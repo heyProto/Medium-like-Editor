@@ -1,6 +1,6 @@
 # proto-mde
 
-> MDE for Proto Toolkit
+> 
 
 [![NPM](https://img.shields.io/npm/v/proto-mde.svg)](https://www.npmjs.com/package/proto-mde) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
