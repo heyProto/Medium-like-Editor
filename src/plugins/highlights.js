@@ -1,6 +1,6 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
-import * as textQuote from 'dom-anchor-text-quote';
+import { textQuote } from 'dom-anchor-text-quote';
 
 const highlightPluginKey = new PluginKey();
 

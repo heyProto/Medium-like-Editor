@@ -5,8 +5,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@firebase/database": "^0.3.6",
-    "prop-types": "^15.6.2",
     "proto-mde": "file:..",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
