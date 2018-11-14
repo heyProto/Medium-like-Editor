@@ -1,13 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import ExampleComponent from 'proto-mde'
+import { Editor } from 'proto-mde';
 
 export default class App extends Component {
-  render () {
+  
+  render() {
+    this.state && console.log(this.state.doc)
     return (
       <div>
-        <ExampleComponent text='Modern React component module' />
+        <div>
+          <Editor onChange={doc => this.setState({ doc })} />
+        </div>
+        <pre>
+          {this.state && <code>{JSON.stringify(this.state.doc.view.state.doc, null, 2)}</code>}
+        </pre>
       </div>
-    )
+    );
   }
 }
