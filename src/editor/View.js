@@ -48,16 +48,16 @@ const defaultProps = {
   getHighlightContent: () => {},
 };
 
-class Editor extends Component {
+class View extends Component {
   constructor(props) {
     super(props);
 
     this.configurePlugins = this.configurePlugins.bind(this);
     this.configureNodeViews = this.configureNodeViews.bind(this);
     this.createEditor = this.createEditor.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.editorRef = React.createRef();
-    this.schema = buildSchema(this.props.customNodes, this.props.customMarks);
     this.plugins = undefined;
     this.nodeViews = undefined;
   }
@@ -100,7 +100,7 @@ class Editor extends Component {
           },
           getHighlightContent: this.props.getHighlightContent,
         };
-        return allPlugins[key](this.schema, passedProps);
+        return allPlugins[key](this.props.schema, passedProps);
       })
       .reduce((prev, curr) => {
         /* Some plugin generation functions return an */
@@ -122,7 +122,7 @@ class Editor extends Component {
 
   configureNodeViews() {
     const nodeViews = {};
-    const usedNodes = this.schema.nodes;
+    const usedNodes = this.props.schema.nodes;
     Object.keys(usedNodes).forEach(nodeName => {
       const nodeSpec = usedNodes[nodeName].spec;
       if (nodeSpec.isNodeView) {
@@ -148,9 +148,14 @@ class Editor extends Component {
 
   createEditor() {
     /* Create the Editor State */
-    const state = EditorState.create({
-      doc: this.schema.nodeFromJSON(this.props.initialContent),
-      schema: this.schema,
+    // const state = EditorState.create({
+    //   doc: this.schema.nodeFromJSON(this.props.initialContent),
+    //   schema: this.schema,
+    //   plugins: this.plugins,
+    // });
+
+    const state = this.props.editorState.reconfigure({
+      schema: this.props.schema,
       plugins: this.plugins,
     });
 
@@ -179,17 +184,16 @@ class Editor extends Component {
     editorView.dispatch(emptyInitTransaction);
   }
 
-  // handleChange(e) {
-  //   this.editorChange = e;
-  //   this.props.onChange(e);
-  // }
+  handleChange(e) {
+    this.editorChange = e;
+    this.props.onChange(e);
+  }
 
   render() {
     /* Before createEditor is called from componentDidMount, we */
     /* render a static version of the doc for server-side */
     /* friendliness. This static version is overwritten when the */
     /* editorView is mounted into the editor dom node. */
-    console.log('TEST');
     return (
       <div
         className={`${styles.protoEditorView} ${
@@ -198,7 +202,7 @@ class Editor extends Component {
         ref={this.editorRef}
       >
         {renderStatic(
-          this.schema,
+          this.props.schema,
           this.props.initialContent.content,
           this.props
         )}
@@ -207,6 +211,6 @@ class Editor extends Component {
   }
 }
 
-Editor.propTypes = propTypes;
-Editor.defaultProps = defaultProps;
-export default Editor;
+View.propTypes = propTypes;
+View.defaultProps = defaultProps;
+export default View;

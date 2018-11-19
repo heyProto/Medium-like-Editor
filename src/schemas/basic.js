@@ -69,19 +69,19 @@ export const basicNodes = {
   },
   heading: {
     attrs: {
-      level: { default: 1 },
+      level: { default: 2 },
       id: { default: '' },
     },
     content: 'inline*',
     group: 'block',
     defining: true,
     parseDOM: [
-      {
-        tag: 'h1',
-        getAttrs(dom) {
-          return { level: 1, id: dom.getAttribute('id') };
-        },
-      },
+      // {
+      //   tag: 'h1',
+      //   getAttrs(dom) {
+      //     return { level: 1, id: dom.getAttribute('id') };
+      //   },
+      // },
       {
         tag: 'h2',
         getAttrs(dom) {
@@ -114,14 +114,18 @@ export const basicNodes = {
       },
     ],
     toDOM(node) {
-      return [`h${node.attrs.level}`, { id: node.attrs.id }, 0];
+      return [
+        `h${node.attrs.level < 2 ? 2 : node.attrs.level}`,
+        { id: node.attrs.id },
+        0,
+      ];
     },
     toStatic(node, options, isSelected, isEditable, editorProps, children) {
       if (node.attrs.level === 1) {
         return (
-          <h1 key={node.currIndex} id={node.attrs.id}>
+          <h2 key={node.currIndex} id={node.attrs.id}>
             {children}
-          </h1>
+          </h2>
         );
       }
       if (node.attrs.level === 2) {

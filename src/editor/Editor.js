@@ -41,18 +41,22 @@ class Editor extends Component {
     this.props.onChange && this.props.onChange(editorState);
   }
 
-  handleViewChange(editorState) {
-    this.setState({ editorState: editorState });
+  handleViewChange(e) {
+    const editorState = e.view.state;
+    this.setState({
+      editorChange: e,
+      editorState: editorState,
+    });
     this.props.onChange && this.props.onChange(editorState);
   }
 
   render() {
     if (this.state) {
-      console.log('STATE is: ', this.state.editorState);
+      console.log(this.state);
       return (
         <div className="proto-editor">
           <Menu
-            editorState={this.state.editorState}
+            editorChange={this.state.editorChange}
             dispatchTransaction={this.dispatchTransaction}
             schema={this.schema}
           />
@@ -62,10 +66,8 @@ class Editor extends Component {
             schema={this.schema}
           />
           <pre>
-            {this.state.editorState.view && (
-              <code>
-                {JSON.stringify(this.state.editorState.view.state.doc, null, 2)}
-              </code>
+            {this.state.editorState.doc && (
+              <code>{JSON.stringify(this.state.editorState.doc, null, 2)}</code>
             )}
           </pre>
         </div>

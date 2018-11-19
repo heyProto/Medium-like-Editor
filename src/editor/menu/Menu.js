@@ -12,7 +12,8 @@ class Menu extends Component {
   }
 
   render() {
-    console.log("SCHEMA", this.props.schema, "STATE", this.props.editorState);
+
+    this.props.editorChange && console.log('Editor change at menu:', this.props.editorChange);
     return <div className="proto-menu" />;
   }
 }
