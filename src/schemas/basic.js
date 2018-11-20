@@ -54,7 +54,7 @@ export const basicNodes = {
     group: 'block',
     parseDOM: [{ tag: 'hr' }],
     toDOM() {
-      return ['div', ['hr']];
+      return ['hr'];
     },
     onInsert: view => {
       view.dispatch(

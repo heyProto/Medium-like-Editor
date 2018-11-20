@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import MenuItem from './MenuItem';
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -12,11 +13,14 @@ class Menu extends Component {
   }
 
   render() {
-
-    this.props.editorChange && console.log('Editor change at menu:', this.props.editorChange);
-    return <div className="proto-menu" />;
+	this.props.editorChange && console.log('Editor change at menu:', this.props.editorChange);
+    return (
+    	<div className="proto-menu">
+    	{this.props.editorChange && this.props.editorChange.menuItems.map(e => <MenuItem {...e} selection={this.props.editorChange.selection} />)}
+    	</div>);
   }
 }
+
 
 Menu.propTypes = propTypes;
 // Menu.defaultProps = defaultProps;
