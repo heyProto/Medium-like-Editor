@@ -128,19 +128,95 @@ const getMenuItems = editorView => {
 
   const menuItems = [
     {
-      title: 'Emphasize',
+      title: 'Strong',
       section: 'transform',
       type: 'button',
-      icon: 'envelope',
+      icon: 'bold',
+      run: applyToggleMark.bind(this, schema.marks.strong, {}),
+      isAllowed: true,
+      isActive: schema.marks.strong && markIsActive(schema.marks.strong),
+    },
+    {
+      title: 'Emphasis',
+      section: 'transform',
+      type: 'button',
+      icon: 'italic',
       run: applyToggleMark.bind(this, schema.marks.em, {}),
       isAllowed: true,
       isActive: schema.marks.em && markIsActive(schema.marks.em),
     },
     {
+      title: 'code',
+      section: 'transform',
+      type: 'button',
+      icon: 'code',
+      run: applyToggleMark.bind(this, schema.marks.code, {}),
+      isAllowed: true,
+      isActive: schema.marks.code && markIsActive(schema.marks.code),
+    },
+    {
+      title: 'subscript',
+      section: 'transform',
+      type: 'button',
+      icon: 'subscript',
+      run: applyToggleMark.bind(this, schema.marks.sub, {}),
+      isAllowed: true,
+      isActive: schema.marks.sub && markIsActive(schema.marks.sub),
+    },
+    {
+      title: 'superscript',
+      section: 'transform',
+      type: 'button',
+      icon: 'superscript',
+      run: applyToggleMark.bind(this, schema.marks.sup, {}),
+      isAllowed: true,
+      isActive: schema.marks.sup && markIsActive(schema.marks.sup),
+    },
+    {
+      title: 'strikethrough',
+      section: 'transform',
+      type: 'button',
+      icon: 'strikethrough',
+      run: applyToggleMark.bind(this, schema.marks.strike, {}),
+      isAllowed: true,
+      isActive: schema.marks.strike && markIsActive(schema.marks.strike),
+    },
+    {
+      title: 'link',
+      section: 'transform',
+      type: 'button',
+      icon: 'link',
+      run: applyToggleMark.bind(this, schema.marks.link, {}),
+      isAllowed: true,
+      isActive: schema.marks.link && markIsActive(schema.marks.link),
+    },
+    {
+      title: 'bullet-list',
+      section: 'block',
+      type: 'button',
+      icon: 'list-ul',
+      run: toggleWrapList.bind(this, schema.nodes.bullet_list),
+      isAllowed: true,
+      isActive:
+        schema.nodes.bullet_list && blockTypeIsActive(schema.nodes.bullet_list),
+    },
+    {
+      title: 'numbered-list',
+      section: 'block',
+      type: 'button',
+      icon: 'list-ol',
+      run: toggleWrapList.bind(this, schema.nodes.ordered_list),
+      isAllowed: true,
+      isActive:
+        schema.nodes.ordered_list &&
+        blockTypeIsActive(schema.nodes.ordered_list),
+    },
+
+    {
       title: 'Blockquote',
       section: 'block',
       type: 'button',
-      icon: 'envelope',
+      icon: 'quote-left',
       run: toggleWrap.bind(this, schema.nodes.blockquote),
       isAllowed: true,
       isActive:
@@ -150,10 +226,18 @@ const getMenuItems = editorView => {
       title: 'Horizontal Rule',
       section: 'insert',
       type: 'button',
-      icon: 'key',
+      icon: 'minus',
       run: schema.nodes.horizontal_rule.spec.onInsert.bind(this, editorView),
       isAllowed: canInsert(editorView.state, schema.nodes.horizontal_rule),
     },
+    {
+      title: 'Card',
+      section: 'insert',
+      type: 'prompt',
+      icon: 'superscript',
+      run: schema.nodes.card.spec.onInsert.bind(this, editorView),
+      isAllowed: canInsert(editorView.state, schema.nodes.card)
+    }
   ];
 
   const formattingItems = [
@@ -200,58 +284,10 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 6 }),
     },
     {
-      title: 'strong',
-      run: applyToggleMark.bind(this, schema.marks.strong, {}),
-      isActive: schema.marks.strong && markIsActive(schema.marks.strong),
-    },
-    {
-      title: 'em',
-      run: applyToggleMark.bind(this, schema.marks.em, {}),
-      isActive: schema.marks.em && markIsActive(schema.marks.em),
-    },
-    {
-      title: 'code',
-      run: applyToggleMark.bind(this, schema.marks.code, {}),
-      isActive: schema.marks.code && markIsActive(schema.marks.code),
-    },
-    {
-      title: 'subscript',
-      run: applyToggleMark.bind(this, schema.marks.sub, {}),
-      isActive: schema.marks.sub && markIsActive(schema.marks.sub),
-    },
-    {
-      title: 'superscript',
-      run: applyToggleMark.bind(this, schema.marks.sup, {}),
-      isActive: schema.marks.sup && markIsActive(schema.marks.sup),
-    },
-    {
-      title: 'strikethrough',
-      run: applyToggleMark.bind(this, schema.marks.strike, {}),
-      isActive: schema.marks.strike && markIsActive(schema.marks.strike),
-    },
-    {
       title: 'blockquote',
       run: toggleWrap.bind(this, schema.nodes.blockquote),
       isActive:
         schema.nodes.blockquote && blockTypeIsActive(schema.nodes.blockquote),
-    },
-    {
-      title: 'bullet-list',
-      run: toggleWrapList.bind(this, schema.nodes.bullet_list),
-      isActive:
-        schema.nodes.bullet_list && blockTypeIsActive(schema.nodes.bullet_list),
-    },
-    {
-      title: 'numbered-list',
-      run: toggleWrapList.bind(this, schema.nodes.ordered_list),
-      isActive:
-        schema.nodes.ordered_list &&
-        blockTypeIsActive(schema.nodes.ordered_list),
-    },
-    {
-      title: 'link',
-      run: applyToggleMark.bind(this, schema.marks.link, {}),
-      isActive: schema.marks.link && markIsActive(schema.marks.link),
     },
   ];
   const tableItems =

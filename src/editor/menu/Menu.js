@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from './MenuItem';
+import MenuItem from './MenuItem.js'
+import CardSelector from './CardSelector.js'
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -16,7 +17,15 @@ class Menu extends Component {
 	this.props.editorChange && console.log('Editor change at menu:', this.props.editorChange);
     return (
     	<div className="proto-menu">
-    	{this.props.editorChange && this.props.editorChange.menuItems.map(e => <MenuItem {...e} selection={this.props.editorChange.selection} />)}
+    	{this.props.editorChange && this.props.editorChange.menuItems.map(e => 
+        {
+          if (e.type === 'button') {
+            return (<MenuItem {...e} selection={this.props.editorChange.selection} />)
+          }
+          else {
+            return (<CardSelector {...e} />)
+          }
+        })}
     	</div>);
   }
 }

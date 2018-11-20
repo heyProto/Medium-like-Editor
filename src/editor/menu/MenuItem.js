@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faKey } from '@fortawesome/free-solid-svg-icons';
+import { faBold, faItalic, faQuoteLeft, faMinus, faCode, faSubscript, faSuperscript, faStrikethrough, faLink, faListOl, faListUl } from '@fortawesome/free-solid-svg-icons';
+import './MenuItem.css'
 
-library.add(faEnvelope, faKey);
+library.add(faBold, faItalic, faQuoteLeft, faMinus, faCode, faSubscript, faSuperscript, faStrikethrough, faLink, faListOl, faListUl);
 
 const propTypes = {
   editorState: PropTypes.object,
