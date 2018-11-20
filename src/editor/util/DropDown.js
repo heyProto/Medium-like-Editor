@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faAngleUp, faAngleDown);
 
 const propTypes = {
   options: PropTypes.array,
@@ -23,13 +28,12 @@ class DropDown extends Component {
   }
 
   handleSelect(name) {
+    console.log(name);
     if (this.state.selected !== name) {
-      this.setState(
-        {
-          selected: name,
-        },
-        this.props.onChange(name)
-      );
+      this.setState({
+        selected: name,
+      });
+      this.props.onChange(name);
     }
   }
 
@@ -41,21 +45,25 @@ class DropDown extends Component {
 
   render() {
     const list = this.props.options;
-    const { isOpened, selected, title } = this.state;
+    const { isOpened, selected } = this.state;
     return (
       <div className="editor-dropdown">
         <div className="dd-header" onClick={() => this.toggleList()}>
-          <div className="dd-header-title">{title}</div>
+          <div className="dd-header-title">{selected}</div>
           {isOpened ? (
-            <FontAwesome name="angle-up" size="2x" />
+            <FontAwesomeIcon icon="angle-up" size="2x" />
           ) : (
-            <FontAwesome name="angle-down" size="2x" />
+            <FontAwesomeIcon icon="angle-down" size="2x" />
           )}
         </div>
         {isOpened && (
           <ul className="dd-list">
             {list.map(item => (
-              <li className="dd-list-item" key={item.id}>
+              <li
+                className="dd-list-item"
+                key={item.id}
+                onClick={e => this.handleSelect(item.name)}
+              >
                 {item.name}
               </li>
             ))}

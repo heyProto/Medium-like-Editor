@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { MenuItem } from 'prosemirror-menu';
+import MenuItem from './MenuItem';
 import DropDown from '../util/DropDown';
+import Card from '../../components/Card/Card';
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -17,29 +18,25 @@ class CardSelector extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.toggleSelector = this.toggleSelector.bind(this);
 
-    this.setState({ isOpened: false });
+    this.state = { isOpened: false };
   }
-
-  // componentDidMount() {
-  //   this.setState({
-  //     disabled:
-  //       this.props.isAllowed && !this.props.isAllowed(this.props.editorState),
-  //     active:
-  //       this.props.isActive && this.props.isActive(this.props.editorState),
-  //   });
-  // }
 
   handleSubmit(e) {
     e.stopPropagation();
     e.preventDefault();
     this.toggleSelector();
-    this.props.run();
+    console.log('PROPS: ', this.props);
+    this.props.run(this.state.cardIframe);
   }
 
   handleChange(e) {
-    let card = this.props['card-list'].find(x => x.name === e);
+    console.log(this);
+    let card = (this.props['card-list'] || [{ id: 1, name: 'test' }]).find(
+      x => x.name === e
+    );
 
     let cardIframe = {
       url: 'dummy',
@@ -54,36 +51,42 @@ class CardSelector extends Component {
 
   toggleSelector(e) {
     let isOpened = this.state.isOpened;
-    this.setState({ isOpened: !isOpened });
+    this.setState({ isOpened: !isOpened, card: null, cardIframe: null });
   }
 
   render() {
-    console.log(this.props);
-    let buttonProps = this.props;
-    delete buttonProps['card-list'];
-    buttonProps.run = this.handleButtonDown;
+    let buttonProps = {
+      selection: this.props.selection,
+      run: this.toggleSelector,
+      isActive: this.props.isActive,
+      isAllowed: this.props.isAllowed,
+    };
     return (
-      <MenuItem {...buttonProps}>
-        <div>
-          <DropDown
-            options={this.props['card-list']}
-            onChange={this.handleChange}
-            placeHolder="Select Card ..."
-          />
-          <button disabled={!this.state.card} onMouseDown={this.handleSubmit}>
-            Submit
-          </button>
-          <button onMouseDown={this.toggleSelector}>Cancel</button>
-          {this.state.cardIframe && (
-            <div className="card-preview">
-              <iframe
-                title={this.state.cardIframe.caption}
-                src={this.state.cardIframe.url}
+      <div>
+        <MenuItem {...buttonProps} />
+        {this.state &&
+          this.state.isOpened && (
+            <div>
+              <DropDown
+                options={this.props['card-list'] || [{ id: 1, name: 'test' }]}
+                onChange={this.handleChange}
+                placeHolder="Select Card ..."
               />
+              <button
+                disabled={!this.state.card}
+                onMouseDown={this.handleSubmit}
+              >
+                Submit
+              </button>
+              <button onMouseDown={this.toggleSelector}>Cancel</button>
+              {this.state.cardIframe && (
+                <div className="card-preview">
+                  <Card attrs={this.state.cardIframe} />
+                </div>
+              )}
             </div>
           )}
-        </div>
-      </MenuItem>
+      </div>
     );
   }
 }

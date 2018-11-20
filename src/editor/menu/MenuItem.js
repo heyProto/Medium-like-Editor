@@ -1,11 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBold, faItalic, faQuoteLeft, faMinus, faCode, faSubscript, faSuperscript, faStrikethrough, faLink, faListOl, faListUl } from '@fortawesome/free-solid-svg-icons';
-import './MenuItem.css'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBold,
+  faItalic,
+  faQuoteLeft,
+  faMinus,
+  faCode,
+  faSubscript,
+  faSuperscript,
+  faStrikethrough,
+  faLink,
+  faListOl,
+  faListUl,
+} from '@fortawesome/free-solid-svg-icons';
+import './MenuItem.css';
 
-library.add(faBold, faItalic, faQuoteLeft, faMinus, faCode, faSubscript, faSuperscript, faStrikethrough, faLink, faListOl, faListUl);
+library.add(
+  faBold,
+  faItalic,
+  faQuoteLeft,
+  faMinus,
+  faCode,
+  faSubscript,
+  faSuperscript,
+  faStrikethrough,
+  faLink,
+  faListOl,
+  faListUl
+);
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -35,11 +59,12 @@ class MenuItem extends Component {
   handleMouseDown(e) {
     e.stopPropagation();
     e.preventDefault();
+    console.log(this.props);
     this.props.run();
   }
 
   render() {
-    console.log(this.props)
+    console.log(this.props);
     return (
       <button
         className="proto-menuitem"
