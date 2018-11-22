@@ -172,46 +172,47 @@ const getMenuItems = editorView => {
   ];
 
   const headers = [
-  {
-    title: 'header2',
-    level: 2,
-    run: toggleBlockType.bind(this, schema.nodes.heading, { level: 2 }),
-    isActive:
+    {
+      title: 'header2',
+      level: 2,
+      run: toggleBlockType.bind(this, schema.nodes.heading, { level: 2 }),
+      isActive:
         schema.nodes.heading &&
-        blockTypeIsActive(schema.nodes.heading, { level: 2 })
-  },
-  {
-    title: 'header3',
-    level: 3,
-    run: toggleBlockType.bind(this, schema.nodes.heading, { level: 3 }),
-    isActive:
+        blockTypeIsActive(schema.nodes.heading, { level: 2 }),
+    },
+    {
+      title: 'header3',
+      level: 3,
+      run: toggleBlockType.bind(this, schema.nodes.heading, { level: 3 }),
+      isActive:
         schema.nodes.heading &&
-        blockTypeIsActive(schema.nodes.heading, { level: 3 })
-  },
-  {
-    title: 'header4',
-    level: 4,
-    run: toggleBlockType.bind(this, schema.nodes.heading, { level: 4 }),
-    isActive:
+        blockTypeIsActive(schema.nodes.heading, { level: 3 }),
+    },
+    {
+      title: 'header4',
+      level: 4,
+      run: toggleBlockType.bind(this, schema.nodes.heading, { level: 4 }),
+      isActive:
         schema.nodes.heading &&
-        blockTypeIsActive(schema.nodes.heading, { level: 4 })
-  },
-  {
-    title: 'header5',
-    level: 5,
-    run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
-    isActive:
+        blockTypeIsActive(schema.nodes.heading, { level: 4 }),
+    },
+    {
+      title: 'header5',
+      level: 5,
+      run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
+      isActive:
         schema.nodes.heading &&
-        blockTypeIsActive(schema.nodes.heading, { level: 5 })
-  },
-  {
-    title: 'header6',
-    level: 6,
-    run: toggleBlockType.bind(this, schema.nodes.heading, { level: 6 }),
-    isActive:
+        blockTypeIsActive(schema.nodes.heading, { level: 5 }),
+    },
+    {
+      title: 'header6',
+      level: 6,
+      run: toggleBlockType.bind(this, schema.nodes.heading, { level: 6 }),
+      isActive:
         schema.nodes.heading &&
-        blockTypeIsActive(schema.nodes.heading, { level: 6 })
-  },]
+        blockTypeIsActive(schema.nodes.heading, { level: 6 }),
+    },
+  ];
 
   const menuItems = [
     {
@@ -271,9 +272,9 @@ const getMenuItems = editorView => {
     {
       title: 'link',
       section: 'transform',
-      type: 'button',
+      type: 'prompt',
       icon: 'link',
-      run: applyToggleMark.bind(this, schema.marks.link, {}),
+      run: applyToggleMark.bind(this, schema.marks.link),
       isAllowed: true,
       isActive: schema.marks.link && markIsActive(schema.marks.link),
     },
@@ -323,7 +324,7 @@ const getMenuItems = editorView => {
       type: 'prompt',
       icon: 'square',
       run: schema.nodes.card.spec.onInsert.bind(this, editorView),
-      isAllowed: canInsert(editorView.state, schema.nodes.card)
+      isAllowed: canInsert(editorView.state, schema.nodes.card),
     },
     {
       title: 'Heading',
@@ -332,8 +333,9 @@ const getMenuItems = editorView => {
       icon: 'superscript',
       items: headers,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
-      isAllowed: schema.nodes.heading && blockTypeIsActive(schema.nodes.heading)
-    }
+      isAllowed:
+        schema.nodes.heading && blockTypeIsActive(schema.nodes.heading),
+    },
   ];
 
   const tableItems =
