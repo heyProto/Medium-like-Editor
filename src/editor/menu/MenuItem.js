@@ -14,6 +14,7 @@ import {
   faLink,
   faListOl,
   faListUl,
+  faSquare
 } from '@fortawesome/free-solid-svg-icons';
 import './MenuItem.css';
 
@@ -28,7 +29,8 @@ library.add(
   faStrikethrough,
   faLink,
   faListOl,
-  faListUl
+  faListUl,
+  faSquare
 );
 
 const propTypes = {
@@ -59,12 +61,10 @@ class MenuItem extends Component {
   handleMouseDown(e) {
     e.stopPropagation();
     e.preventDefault();
-    console.log(this.props);
     this.props.run();
   }
 
   render() {
-    console.log(this.props);
     return (
       <button
         className="proto-menuitem"

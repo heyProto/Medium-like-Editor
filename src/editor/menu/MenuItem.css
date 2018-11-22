@@ -1,5 +1,15 @@
 .proto-menuitem {
-	background-color: blue;
-	width: 50px;
-	height: 50px;
+	border: none;
+    background-color: #ededed;
+    width: 50px;
+    height: 50px;
+}
+
+.proto-menuitem:hover {
+	cursor: pointer;
+	background-color: #e3e3e3;
+}
+
+.proto-menuitem[active=true] {
+	background-color: #c8c8c8;
 }

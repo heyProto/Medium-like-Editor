@@ -33,7 +33,7 @@ class CardSelector extends Component {
   }
 
   handleChange(e) {
-    console.log(this);
+    console.log(this, e);
     let card = (this.props['card-list'] || [{ id: 1, name: 'test' }]).find(
       x => x.name === e
     );
@@ -55,14 +55,16 @@ class CardSelector extends Component {
   }
 
   render() {
+    console.log(this.props)
     let buttonProps = {
+      icon: this.props.icon,
       selection: this.props.selection,
       run: this.toggleSelector,
       isActive: this.props.isActive,
       isAllowed: this.props.isAllowed,
     };
     return (
-      <div>
+      <div className="card-selector">
         <MenuItem {...buttonProps} />
         {this.state &&
           this.state.isOpened && (

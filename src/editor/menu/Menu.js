@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from './MenuItem.js'
 import CardSelector from './CardSelector.js'
+import DropdownMenuItem from './DropdownMenuItem.js'
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -21,6 +22,9 @@ class Menu extends Component {
         {
           if (e.type === 'button') {
             return (<MenuItem {...e} selection={this.props.editorChange.selection} />)
+          }
+          else if (e.type === 'dropdown') {
+            return (<DropdownMenuItem {...e} />)
           }
           else {
             return (<CardSelector {...e} />)
