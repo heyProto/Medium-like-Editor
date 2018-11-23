@@ -10,7 +10,7 @@ export default {
       height: { default: 419 },
       align: { default: 'center' },
       caption: { default: '' },
-      id: { default: 0 },
+      'data-card-id': { default: null },
     },
     parseDOM: [
       {
@@ -22,7 +22,7 @@ export default {
             height: Number(node.getAttribute('height')) || 419,
             align: node.getAttribute('data-align') || 'center',
             caption: node.getAttribute('alt') || '',
-            id: node.getAttribute('data-card-id') || 0,
+            'data-card-id': node.getAttribute('data-card-id') || 0,
           };
         },
       },
@@ -36,7 +36,7 @@ export default {
           height: node.attrs.height,
           'data-align': node.attrs.align,
           alt: node.attrs.caption,
-          'data-card-id': node.attrs.id,
+          'data-card-id': node.attrs['data-card-id'],
         },
       ];
     },

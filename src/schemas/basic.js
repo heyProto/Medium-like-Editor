@@ -12,6 +12,7 @@ export const basicNodes = {
     group: 'block',
     attrs: {
       class: { default: null },
+      'data-card-id': { default: null },
     },
     parseDOM: [
       {
@@ -19,17 +20,25 @@ export const basicNodes = {
         getAttrs(dom) {
           return {
             class: dom.getAttribute('class'),
+            'data-card-id': dom.getAttribute('data-card-id'),
           };
         },
       },
     ],
     toDOM(node) {
-      return ['p', { class: node.attrs.class }, 0];
+      return [
+        'p',
+        { class: node.attrs.class, 'data-card-id': node.attrs['data-card-id'] },
+        0,
+      ];
     },
     toStatic(node, options, isSelected, isEditable, editorProps, children) {
       const attrs = {};
       if (node.attrs && node.attrs.class) {
         attrs.className = node.attrs.class;
+      }
+      if (node.attrs && node.attrs['data-card-id']) {
+        attrs['data-card-id'] = node.attrs['data-card-id'];
       }
       const emptyChildren = <br />;
       return (
@@ -42,12 +51,32 @@ export const basicNodes = {
   blockquote: {
     content: 'block+',
     group: 'block',
-    parseDOM: [{ tag: 'blockquote' }],
-    toDOM() {
-      return ['blockquote', 0];
+    attrs: {
+      'data-card-id': { default: null },
+    },
+    parseDOM: [
+      {
+        tag: 'blockquote',
+        getAttrs(dom) {
+          return {
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
+        },
+      },
+    ],
+    toDOM(node) {
+      return ['blockquote', { 'data-card-id': node.attrs['data-card-id'] }, 0];
     },
     toStatic(node, options, isSelected, isEditable, editorProps, children) {
-      return <blockquote key={node.currIndex}>{children}</blockquote>;
+      const attrs = {};
+      if (node.attrs && node.attrs['data-card-id']) {
+        attrs['data-card-id'] = node.attrs['data-card-id'];
+      }
+      return (
+        <blockquote key={node.currIndex} {...attrs}>
+          {children}
+        </blockquote>
+      );
     },
   },
   horizontal_rule: {
@@ -71,6 +100,7 @@ export const basicNodes = {
     attrs: {
       level: { default: 2 },
       id: { default: '' },
+      'data-card-id': { default: null },
     },
     content: 'inline*',
     group: 'block',
@@ -85,80 +115,124 @@ export const basicNodes = {
       {
         tag: 'h2',
         getAttrs(dom) {
-          return { level: 2, id: dom.getAttribute('id') };
+          return {
+            level: 2,
+            id: dom.getAttribute('id'),
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
         },
       },
       {
         tag: 'h3',
         getAttrs(dom) {
-          return { level: 3, id: dom.getAttribute('id') };
+          return {
+            level: 3,
+            id: dom.getAttribute('id'),
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
         },
       },
       {
         tag: 'h4',
         getAttrs(dom) {
-          return { level: 4, id: dom.getAttribute('id') };
+          return {
+            level: 4,
+            id: dom.getAttribute('id'),
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
         },
       },
       {
         tag: 'h5',
         getAttrs(dom) {
-          return { level: 5, id: dom.getAttribute('id') };
+          return {
+            level: 5,
+            id: dom.getAttribute('id'),
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
         },
       },
       {
         tag: 'h6',
         getAttrs(dom) {
-          return { level: 6, id: dom.getAttribute('id') };
+          return {
+            level: 6,
+            id: dom.getAttribute('id'),
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
         },
       },
     ],
     toDOM(node) {
       return [
         `h${node.attrs.level < 2 ? 2 : node.attrs.level}`,
-        { id: node.attrs.id },
+        { id: node.attrs.id, 'data-card-id': node.attrs['data-card-id'] },
         0,
       ];
     },
     toStatic(node, options, isSelected, isEditable, editorProps, children) {
       if (node.attrs.level === 1) {
         return (
-          <h2 key={node.currIndex} id={node.attrs.id}>
+          <h2
+            key={node.currIndex}
+            id={node.attrs.id}
+            data-card-id={node.attrs['data-card-id']}
+          >
             {children}
           </h2>
         );
       }
       if (node.attrs.level === 2) {
         return (
-          <h2 key={node.currIndex} id={node.attrs.id}>
+          <h2
+            key={node.currIndex}
+            id={node.attrs.id}
+            data-card-id={node.attrs['data-card-id']}
+          >
             {children}
           </h2>
         );
       }
       if (node.attrs.level === 3) {
         return (
-          <h3 key={node.currIndex} id={node.attrs.id}>
+          <h3
+            key={node.currIndex}
+            id={node.attrs.id}
+            data-card-id={node.attrs['data-card-id']}
+          >
             {children}
           </h3>
         );
       }
       if (node.attrs.level === 4) {
         return (
-          <h4 key={node.currIndex} id={node.attrs.id}>
+          <h4
+            key={node.currIndex}
+            id={node.attrs.id}
+            data-card-id={node.attrs['data-card-id']}
+          >
             {children}
           </h4>
         );
       }
       if (node.attrs.level === 5) {
         return (
-          <h5 key={node.currIndex} id={node.attrs.id}>
+          <h5
+            key={node.currIndex}
+            id={node.attrs.id}
+            data-card-id={node.attrs['data-card-id']}
+          >
             {children}
           </h5>
         );
       }
       if (node.attrs.level === 6) {
         return (
-          <h6 key={node.currIndex} id={node.attrs.id}>
+          <h6
+            key={node.currIndex}
+            id={node.attrs.id}
+            data-card-id={node.attrs['data-card-id']}
+          >
             {children}
           </h6>
         );
@@ -169,12 +243,13 @@ export const basicNodes = {
   ordered_list: {
     content: 'list_item+',
     group: 'block',
-    attrs: { order: { default: 1 } },
+    attrs: { order: { default: 1 }, 'data-card-id': { default: null } },
     parseDOM: [
       {
         tag: 'ol',
         getAttrs(dom) {
           return {
+            'data-card-id': dom.getAttribute('data-card-id'),
             order: dom.hasAttribute('start') ? +dom.getAttribute('start') : 1,
           };
         },
@@ -183,12 +258,18 @@ export const basicNodes = {
     toDOM(node) {
       return [
         'ol',
-        { start: node.attrs.order === 1 ? null : node.attrs.order },
+        {
+          start: node.attrs.order === 1 ? null : node.attrs.order,
+          'data-card-id': node.attrs['data-card-id'],
+        },
         0,
       ];
     },
     toStatic(node, options, isSelected, isEditable, editorProps, children) {
-      const attrs = { start: node.attrs.order === 1 ? null : node.attrs.order };
+      const attrs = {
+        start: node.attrs.order === 1 ? null : node.attrs.order,
+        'data-card-id': node.attrs['data-card-id'],
+      };
       return (
         <ol key={node.currIndex} {...attrs}>
           {children}
@@ -199,12 +280,26 @@ export const basicNodes = {
   bullet_list: {
     content: 'list_item+',
     group: 'block',
-    parseDOM: [{ tag: 'ul' }],
-    toDOM() {
-      return ['ul', 0];
+    attrs: { 'data-card-id': { default: null } },
+    parseDOM: [
+      {
+        tag: 'ul',
+        getAttrs(dom) {
+          return {
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
+        },
+      },
+    ],
+    toDOM(node) {
+      return ['ul', { 'data-card-id': node.attrs['data-card-id'] }, 0];
     },
     toStatic(node, options, isSelected, isEditable, editorProps, children) {
-      return <ul key={node.currIndex}>{children}</ul>;
+      return (
+        <ul key={node.currIndex} data-card-id={node.attrs['data-card-id']}>
+          {children}
+        </ul>
+      );
     },
   },
   list_item: {
@@ -221,10 +316,25 @@ export const basicNodes = {
   code_block: {
     content: 'text*',
     group: 'block',
+    attrs: { 'data-card-id': { default: null } },
     code: true,
-    parseDOM: [{ tag: 'pre', preserveWhitespace: true }],
-    toDOM() {
-      return ['pre', ['code', 0]];
+    parseDOM: [
+      {
+        tag: 'pre',
+        getAttrs(dom) {
+          return {
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
+        },
+        preserveWhitespace: true,
+      },
+    ],
+    toDOM(node) {
+      return [
+        'pre',
+        { 'data-card-id': node.attrs['data-card-id'] },
+        ['code', 0],
+      ];
     },
     onInsert: view => {
       view.dispatch(
@@ -235,7 +345,7 @@ export const basicNodes = {
     },
     toStatic(node, options, isSelected, isEditable, editorProps, children) {
       return (
-        <pre key={node.currIndex}>
+        <pre key={node.currIndex} data-card-id={node.attrs['data-card-id']}>
           <code>{children}</code>
         </pre>
       );

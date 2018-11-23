@@ -1,11 +1,11 @@
 {
-  "name": "proto-mde-example",
-  "homepage": "https://.github.io/proto-mde",
+  "name": "proto-editor-example",
+  "homepage": "https://.github.io/proto-editor",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "proto-mde": "file:..",
+    "proto-editor": "file:..",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4"
