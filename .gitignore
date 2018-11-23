@@ -1,0 +1,6 @@
+#ignore the following files
+package-lock.json
+dist/
+example/build/
+example/node_modules/
+node_modules/
