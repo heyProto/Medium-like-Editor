@@ -29,17 +29,17 @@ export default {
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
+      plugins: ['external-helpers']
     }),
     resolve(),
     commonjs({
-  namedExports: {
-    // left-hand side can be an absolute path, a path
-    // relative to the current directory, or the name
-    // of a module in node_modules
-    'node_modules/dom-anchor-text-quote/index.js': [ 'textQuote' ]
-  }
-})
-  ],
-  context: "window"
+      namedExports: {
+        // left-hand side can be an absolute path, a path
+        // relative to the current directory, or the name
+        // of a module in node_modules
+        'node_modules/dom-anchor-text-quote/index.js': ['textQuote']
+      }
+    })
+  ]
+  // context: "window"
 }
