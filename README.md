@@ -1,13 +1,13 @@
-# proto-mde
+# proto-editor
 
 > 
 
-[![NPM](https://img.shields.io/npm/v/proto-mde.svg)](https://www.npmjs.com/package/proto-mde) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/proto-editor.svg)](https://www.npmjs.com/package/proto-editor) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save proto-mde
+npm install --save proto-editor
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ npm install --save proto-mde
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'proto-mde'
+import MyComponent from 'proto-editor'
 
 class Example extends Component {
   render () {
@@ -29,3 +29,4 @@ class Example extends Component {
 ## License
 
 MIT © [](https://github.com/)
+

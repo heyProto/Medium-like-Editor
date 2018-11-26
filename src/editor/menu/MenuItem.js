@@ -66,6 +66,7 @@ class MenuItem extends Component {
 
   render() {
     return (
+      <div className="proto-menuitem-div">
       <button
         className="proto-menuitem"
         disabled={!this.props.isAllowed}
@@ -74,6 +75,7 @@ class MenuItem extends Component {
       >
         <FontAwesomeIcon icon={this.props.icon} />
       </button>
+      </div>
     );
   }
 }

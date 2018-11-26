@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Editor } from 'proto-mde';
+import { Editor } from 'proto-editor';
 
 export default class App extends Component {
   

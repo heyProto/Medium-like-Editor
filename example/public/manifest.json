@@ -1,6 +1,6 @@
 {
-  "short_name": "proto-mde",
-  "name": "proto-mde",
+  "short_name": "proto-editor",
+  "name": "proto-editor",
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",

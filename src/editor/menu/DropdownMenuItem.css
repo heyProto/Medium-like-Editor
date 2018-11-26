@@ -1,4 +1,9 @@
 .editor-dropdown {
 	display: inline-block;
+	position: relative;
+}
+
+.dd-content {
 	position: absolute;
+	display:none;
 }

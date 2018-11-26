@@ -59,15 +59,18 @@ class DropdownMenuItem extends Component {
       <div className="editor-dropdown">
         <div className="dd-header" onClick={() => this.toggleList()}>
           <div className="dd-header-title">{selected}</div>
+          
           {isOpened ? (
             <FontAwesomeIcon icon="angle-up" size="2x" />
           ) : (
             <FontAwesomeIcon icon="angle-down" size="2x" />
           )}
         </div>
-        {isOpened && (
+        <div className="dd-content">
+        {
             list.map(e => {return (<MenuItem {...e} isAllowed={true}>{e.title}</MenuItem>)}
-        ))}
+        )}
+        </div>
       </div>
     );
   }
