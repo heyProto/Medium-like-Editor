@@ -1,5 +1,5 @@
-import React from 'react';
-import Card from '../components/Card/Card';
+import React from 'react'
+import Card from '../components/Card/Card'
 
 export default {
   card: {
@@ -11,6 +11,7 @@ export default {
       align: { default: 'center' },
       caption: { default: '' },
       'data-card-id': { default: null },
+      'data-template-id': { default: null }
     },
     parseDOM: [
       {
@@ -23,9 +24,10 @@ export default {
             align: node.getAttribute('data-align') || 'center',
             caption: node.getAttribute('alt') || '',
             'data-card-id': node.getAttribute('data-card-id') || 0,
-          };
-        },
-      },
+            'data-template-id': node.getAttribute('data-template-id') || 0
+          }
+        }
+      }
     ],
     toDOM: node => {
       return [
@@ -37,8 +39,9 @@ export default {
           'data-align': node.attrs.align,
           alt: node.attrs.caption,
           'data-card-id': node.attrs['data-card-id'],
-        },
-      ];
+          'data-template-id': node.attrs['data-template-id']
+        }
+      ]
     },
     inline: false,
     group: 'block',
@@ -47,13 +50,13 @@ export default {
     /* NodeView Options. These are not part of the standard Prosemirror Schema spec */
     isNodeView: true,
     onInsert: (view, attrs) => {
-      const cardNode = view.state.schema.nodes.card.create(attrs);
-      const transaction = view.state.tr.replaceSelectionWith(cardNode);
-      view.dispatch(transaction);
+      const cardNode = view.state.schema.nodes.card.create(attrs)
+      const transaction = view.state.tr.replaceSelectionWith(cardNode)
+      view.dispatch(transaction)
     },
     defaultOptions: {},
     toStatic: node => {
-      return <Card key={node.currIndex} attrs={node.attrs} />;
-    },
-  },
-};
+      return <Card key={node.currIndex} attrs={node.attrs} />
+    }
+  }
+}

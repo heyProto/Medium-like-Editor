@@ -9,7 +9,7 @@ import NodeViewReact from '../util/nodeViewReact';
 import { renderStatic, buildSchema } from '../util/utilities';
 import { buildMenuItems } from '../util/menu.js';
 import Menu from './menu/Menu';
-import styles from './View.css';
+import './View.css';
 
 // require('./style.scss');
 
@@ -196,7 +196,7 @@ class View extends Component {
     /* editorView is mounted into the editor dom node. */
     return (
       <div
-        className={`${styles.protoEditorView} ${
+        className={`protoEditorView ${
           this.props.isReadOnly ? 'read-only' : ''
         }`}
         ref={this.editorRef}

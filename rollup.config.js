@@ -40,6 +40,8 @@ export default {
         'node_modules/dom-anchor-text-quote/index.js': ['textQuote']
       }
     })
-  ]
-  // context: "window"
+  ],
+  moduleContext: {
+    'src/plugins/onChange.js': 'window'
+  }
 }
