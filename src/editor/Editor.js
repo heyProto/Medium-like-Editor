@@ -38,6 +38,9 @@ class Editor extends Component {
   }
 
   createEditor () {
+    if (this.props.cards) {
+      this.initialContent.content = this.props.cards
+    }
     /* Create the Editor State */
     const state = EditorState.create({
       doc: this.schema.nodeFromJSON(this.initialContent),
