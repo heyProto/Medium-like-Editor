@@ -127,8 +127,8 @@ export const importHtml = (editorView, htmlString) => {
   editorView.dispatch(tr)
 }
 
-export const parseHtml = (htmlString, document) => {
-  const wrapperElem = document.createElement('div')
+export const parseHtml = (htmlString, doc) => {
+  const wrapperElem = (doc || document).createElement('div')
 
   wrapperElem.innerHTML = htmlString
 
