@@ -13,3 +13,16 @@
 .proto-menuitem[active=true] {
 	background-color: #c8c8c8;
 }
+
+.proto-menuitem-div {
+	display: inline-block;
+}
+
+.proto-menuitem:disabled {
+	color: #ababab;
+}
+
+.proto-menuitem:disabled:hover {
+	background-color: inherit;
+	cursor: default;
+}

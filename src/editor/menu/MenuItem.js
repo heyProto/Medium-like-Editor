@@ -72,8 +72,10 @@ class MenuItem extends Component {
         disabled={!this.props.isAllowed}
         active={this.props.isActive ? 'true' : 'false'}
         onMouseDown={this.handleMouseDown}
+        title={this.title}
+        alt={this.title}
       >
-        <FontAwesomeIcon icon={this.props.icon} />
+        <FontAwesomeIcon icon={this.props.icon} size="lg" />
       </button>
       </div>
     );

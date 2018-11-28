@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import DropDown from '../util/DropDown';
 import Card from '../../components/Card/Card';
+import './CardSelector.css'
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -68,7 +69,7 @@ class CardSelector extends Component {
         <MenuItem {...buttonProps} />
         {this.state &&
           this.state.isOpened && (
-            <div>
+            <div className="card-dropdown-content">
               <DropDown
                 options={this.props['card-list'] || [{ id: 1, name: 'test' }]}
                 onChange={this.handleChange}

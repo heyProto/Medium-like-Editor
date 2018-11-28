@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import DropDown from '../util/DropDown';
 import Card from '../../components/Card/Card';
+import './UrlSelector.css'
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -54,8 +55,9 @@ class UrlSelector extends Component {
       isActive: this.props.isActive,
       isAllowed: this.props.isAllowed,
     };
+
     return (
-      <div>
+      <div className="url-selector-button">
         <MenuItem {...buttonProps} />
         {this.state &&
           this.state.isOpened && (
@@ -90,7 +92,6 @@ class UrlSelector extends Component {
                   }}
                   placeHolder=""
                 />
-                />
               </label>
               <button onMouseDown={this.handleSubmit}>Submit</button>
               <button onMouseDown={this.toggleSelector}>Cancel</button>
@@ -98,6 +99,7 @@ class UrlSelector extends Component {
           )}
       </div>
     );
+  
   }
 }
 

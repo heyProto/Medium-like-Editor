@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.card-selector {
+	display: inline-block;
+	position: relative;
+}
+
+.card-dropdown-content {
+	width: 150px;
+    position: absolute;
+    padding: 10px;
+    transition: all 0.1s ease-in;
+    box-shadow: 2px 2px 4px 0px #a9a9a9;
+    font-family: 'Montserrat', sans-serif
+}

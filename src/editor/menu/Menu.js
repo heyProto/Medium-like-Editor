@@ -4,6 +4,7 @@ import MenuItem from './MenuItem.js';
 import DropdownMenuItem from './DropdownMenuItem';
 import CardSelector from './CardSelector.js';
 import UrlSelector from './UrlSelector.js';
+import './Menu.css'
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -29,6 +30,8 @@ class Menu extends Component {
               );
             } else if (e.type === 'dropdown') {
               return <DropdownMenuItem {...e} />;
+            } else if (e.type === 'prompt') {
+              return <UrlSelector {...e} />;
             } else {
               return <CardSelector {...e} />;
             }

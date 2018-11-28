@@ -21,6 +21,7 @@ const propTypes = {
   level: PropTypes.num
 };
 
+
 class DropdownMenuItem extends Component {
   constructor(props) {
     super(props);
@@ -55,9 +56,11 @@ class DropdownMenuItem extends Component {
   render() {
     const list = this.props.items;
     const { isOpened, selected } = this.state;
+    let contentDisplay = (isOpened) ? 'inherit' : 'none'
+
     return (
       <div className="editor-dropdown">
-        <div className="dd-header" onClick={() => this.toggleList()}>
+        <div className="proto-menuitem" onClick={() => this.toggleList()} style={{height: '49px'}}>
           <div className="dd-header-title">{selected}</div>
           
           {isOpened ? (
@@ -66,7 +69,7 @@ class DropdownMenuItem extends Component {
             <FontAwesomeIcon icon="angle-down" size="2x" />
           )}
         </div>
-        <div className="dd-content">
+        <div className="dd-content" style={{display: contentDisplay}}>
         {
             list.map(e => {return (<MenuItem {...e} isAllowed={true}>{e.title}</MenuItem>)}
         )}
