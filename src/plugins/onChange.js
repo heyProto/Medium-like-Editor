@@ -176,6 +176,7 @@ const getMenuItems = editorView => {
       title: 'header2',
       level: 2,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 2 }),
+      icon: 'header2.svg',
       isActive:
         schema.nodes.heading &&
         blockTypeIsActive(schema.nodes.heading, { level: 2 }),
@@ -184,6 +185,7 @@ const getMenuItems = editorView => {
       title: 'header3',
       level: 3,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 3 }),
+      icon: 'header3.svg',
       isActive:
         schema.nodes.heading &&
         blockTypeIsActive(schema.nodes.heading, { level: 3 }),
@@ -192,6 +194,7 @@ const getMenuItems = editorView => {
       title: 'header4',
       level: 4,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 4 }),
+      icon: 'header4.svg',
       isActive:
         schema.nodes.heading &&
         blockTypeIsActive(schema.nodes.heading, { level: 4 }),
@@ -200,6 +203,7 @@ const getMenuItems = editorView => {
       title: 'header5',
       level: 5,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
+      icon: 'header5.svg',
       isActive:
         schema.nodes.heading &&
         blockTypeIsActive(schema.nodes.heading, { level: 5 }),
@@ -208,6 +212,7 @@ const getMenuItems = editorView => {
       title: 'header6',
       level: 6,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 6 }),
+      icon: 'header6.svg',
       isActive:
         schema.nodes.heading &&
         blockTypeIsActive(schema.nodes.heading, { level: 6 }),
@@ -219,7 +224,7 @@ const getMenuItems = editorView => {
       title: 'Strong',
       section: 'transform',
       type: 'button',
-      icon: 'bold',
+      faIcon: 'bold',
       run: applyToggleMark.bind(this, schema.marks.strong, {}),
       isAllowed: true,
       isActive: schema.marks.strong && markIsActive(schema.marks.strong),
@@ -228,7 +233,7 @@ const getMenuItems = editorView => {
       title: 'Emphasis',
       section: 'transform',
       type: 'button',
-      icon: 'italic',
+      faIcon: 'italic',
       run: applyToggleMark.bind(this, schema.marks.em, {}),
       isAllowed: true,
       isActive: schema.marks.em && markIsActive(schema.marks.em),
@@ -237,7 +242,7 @@ const getMenuItems = editorView => {
       title: 'Code',
       section: 'transform',
       type: 'button',
-      icon: 'code',
+      faIcon: 'code',
       run: applyToggleMark.bind(this, schema.marks.code, {}),
       isAllowed: true,
       isActive: schema.marks.code && markIsActive(schema.marks.code),
@@ -246,7 +251,7 @@ const getMenuItems = editorView => {
       title: 'Subscript',
       section: 'transform',
       type: 'button',
-      icon: 'subscript',
+      faIcon: 'subscript',
       run: applyToggleMark.bind(this, schema.marks.sub, {}),
       isAllowed: !markIsActive(schema.marks.sup),
       isActive: schema.marks.sub && markIsActive(schema.marks.sub),
@@ -255,7 +260,7 @@ const getMenuItems = editorView => {
       title: 'Superscript',
       section: 'transform',
       type: 'button',
-      icon: 'superscript',
+      faIcon: 'superscript',
       run: applyToggleMark.bind(this, schema.marks.sup, {}),
       isAllowed: !markIsActive(schema.marks.sub),
       isActive: schema.marks.sup && markIsActive(schema.marks.sup),
@@ -264,7 +269,7 @@ const getMenuItems = editorView => {
       title: 'Strikethrough',
       section: 'transform',
       type: 'button',
-      icon: 'strikethrough',
+      faIcon: 'strikethrough',
       run: applyToggleMark.bind(this, schema.marks.strike, {}),
       isAllowed: true,
       isActive: schema.marks.strike && markIsActive(schema.marks.strike),
@@ -273,7 +278,7 @@ const getMenuItems = editorView => {
       title: 'Link',
       section: 'transform',
       type: 'prompt',
-      icon: 'link',
+      faIcon: 'link',
       run: applyToggleMark.bind(this, schema.marks.link),
       isAllowed: true,
       isActive: schema.marks.link && markIsActive(schema.marks.link),
@@ -282,7 +287,7 @@ const getMenuItems = editorView => {
       title: 'Unordered List',
       section: 'block',
       type: 'button',
-      icon: 'list-ul',
+      faIcon: 'list-ul',
       run: toggleWrapList.bind(this, schema.nodes.bullet_list),
       isAllowed: true,
       isActive:
@@ -292,29 +297,38 @@ const getMenuItems = editorView => {
       title: 'Ordered List',
       section: 'block',
       type: 'button',
-      icon: 'list-ol',
+      faIcon: 'list-ol',
       run: toggleWrapList.bind(this, schema.nodes.ordered_list),
       isAllowed: true,
       isActive:
         schema.nodes.ordered_list &&
         blockTypeIsActive(schema.nodes.ordered_list),
     },
-
     {
       title: 'Blockquote',
       section: 'block',
       type: 'button',
-      icon: 'quote-left',
+      faIcon: 'quote-left',
       run: toggleWrap.bind(this, schema.nodes.blockquote),
       isAllowed: true,
       isActive:
         schema.nodes.blockquote && blockTypeIsActive(schema.nodes.blockquote),
     },
     {
+      title: 'Styled Blockquote',
+      section: 'block',
+      type: 'button',
+      faIcon: 'quote-right',
+      run: toggleWrap.bind(this, schema.nodes.styled_blockquote),
+      isAllowed: true,
+      isActive:
+        schema.nodes.styled_blockquote && blockTypeIsActive(schema.nodes.styled_blockquote),
+    },
+    {
       title: 'Horizontal Rule',
       section: 'insert',
       type: 'button',
-      icon: 'minus',
+      faIcon: 'minus',
       run: schema.nodes.horizontal_rule.spec.onInsert.bind(this, editorView),
       isAllowed: canInsert(editorView.state, schema.nodes.horizontal_rule),
     },
@@ -322,7 +336,7 @@ const getMenuItems = editorView => {
       title: 'Card',
       section: 'insert',
       type: 'prompt',
-      icon: 'square',
+      faIcon: 'square',
       run: schema.nodes.card.spec.onInsert.bind(this, editorView),
       isAllowed: canInsert(editorView.state, schema.nodes.card),
     },
@@ -330,8 +344,8 @@ const getMenuItems = editorView => {
       title: 'Heading',
       section: 'transform',
       type: 'dropdown',
-      icon: 'superscript',
       items: headers,
+      icon: 'header.svg',
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
       isAllowed:
         schema.nodes.heading && blockTypeIsActive(schema.nodes.heading),

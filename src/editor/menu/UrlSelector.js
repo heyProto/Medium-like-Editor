@@ -19,14 +19,38 @@ class UrlSelector extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleSelector = this.toggleSelector.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
     this.targets = [
       { name: 'Same Page', value: '_top' },
       { name: 'New Page', value: '_blank' },
     ];
 
-    this.state = { isOpened: false };
+    this.state = { isOpened: false,
+                    targetValue: '_blank' };
+
+    this.handleClickOutside = this.handleClickOutside.bind(this)
+  }
+
+  handleClick() {
+    // attach/remove event handler
+    if (!this.state.isOpened) {
+      document.addEventListener('click', this.handleClickOutside, false);
+    } else {
+      document.removeEventListener('click', this.handleClickOutside, false);
+    }
+
+    this.setState(prevState => ({
+      isOpened: !prevState.isOpened,
+    }));
+  }
+
+  handleClickOutside(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+
+    this.handleClick();
   }
 
   handleSubmit(e) {
@@ -43,25 +67,20 @@ class UrlSelector extends Component {
 
   validateUrl() {}
 
-  toggleSelector(e) {
-    let isOpened = this.state.isOpened;
-    this.setState({ isOpened: !isOpened, card: null, cardIframe: null });
-  }
-
   render() {
     let buttonProps = {
       selection: this.props.selection,
-      run: this.props.isActive ? this.props.run : this.toggleSelector,
+      run: this.props.isActive ? this.props.run : this.handleClick,
       isActive: this.props.isActive,
       isAllowed: this.props.isAllowed,
+      faIcon: this.props.faIcon
     };
+    let contentDisplay = (this.state.isOpened) ? 'inherit' : 'none'
 
     return (
-      <div className="url-selector-button">
+      <div className="url-selector-button" ref={node => { this.node = node; }}>
         <MenuItem {...buttonProps} />
-        {this.state &&
-          this.state.isOpened && (
-            <div>
+            <div className="url-selector" style={{display: contentDisplay}}>
               <label>
                 Url:
                 <input
@@ -82,26 +101,28 @@ class UrlSelector extends Component {
                   }}
                 />
               </label>
-              <label>
-                Target:
-                <DropDown
-                  options={this.targets}
-                  onChange={e => {
-                    let target = this.targets.find(x => x.name === e);
-                    this.setState({ targetValue: target.value });
-                  }}
-                  placeHolder=""
-                />
-              </label>
+              
               <button onMouseDown={this.handleSubmit}>Submit</button>
               <button onMouseDown={this.toggleSelector}>Cancel</button>
             </div>
-          )}
       </div>
     );
   
   }
 }
+
+// Target code
+//              <label>
+//                 Target:
+//                 <DropDown
+//                   options={this.targets}
+//                   onChange={e => {
+//                     let target = this.targets.find(x => x.name === e);
+//                     this.setState({ targetValue: target.value });
+//                   }}
+//                   placeHolder=""
+//                 />
+//               </label>
 
 UrlSelector.propTypes = propTypes;
 // UrlSelector.defaultProps = defaultProps;

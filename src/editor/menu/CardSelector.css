@@ -6,10 +6,11 @@
 }
 
 .card-dropdown-content {
-	width: 150px;
-    position: absolute;
+	width: min-content;
+    position: relative;
     padding: 10px;
     transition: all 0.1s ease-in;
     box-shadow: 2px 2px 4px 0px #a9a9a9;
-    font-family: 'Montserrat', sans-serif
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
 }

@@ -58,18 +58,18 @@ class CardSelector extends Component {
   render() {
     console.log(this.props)
     let buttonProps = {
-      icon: this.props.icon,
+      faIcon: this.props.faIcon,
       selection: this.props.selection,
       run: this.toggleSelector,
       isActive: this.props.isActive,
       isAllowed: this.props.isAllowed,
     };
+
+    let contentDisplay = (isOpened) ? 'inherit' : 'none'
     return (
       <div className="card-selector">
         <MenuItem {...buttonProps} />
-        {this.state &&
-          this.state.isOpened && (
-            <div className="card-dropdown-content">
+            <div className="card-dropdown-content" style={{display: contentDisplay}}>
               <DropDown
                 options={this.props['card-list'] || [{ id: 1, name: 'test' }]}
                 onChange={this.handleChange}
@@ -88,7 +88,6 @@ class CardSelector extends Component {
                 </div>
               )}
             </div>
-          )}
       </div>
     );
   }

@@ -6,6 +6,7 @@ import {
   faBold,
   faItalic,
   faQuoteLeft,
+  faQuoteRight,
   faMinus,
   faCode,
   faSubscript,
@@ -22,6 +23,7 @@ library.add(
   faBold,
   faItalic,
   faQuoteLeft,
+  faQuoteRight,
   faMinus,
   faCode,
   faSubscript,
@@ -65,6 +67,7 @@ class MenuItem extends Component {
   }
 
   render() {
+    // console.log(this.props)
     return (
       <div className="proto-menuitem-div">
       <button
@@ -74,8 +77,12 @@ class MenuItem extends Component {
         onMouseDown={this.handleMouseDown}
         title={this.title}
         alt={this.title}
+        editorState={this.editorState}
       >
-        <FontAwesomeIcon icon={this.props.icon} size="lg" />
+        {this.props.faIcon ? 
+          <FontAwesomeIcon icon={this.props.faIcon} size="lg" /> :
+          <img src={this.props.icon} width="16px"/>
+        }
       </button>
       </div>
     );

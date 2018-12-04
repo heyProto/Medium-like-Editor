@@ -79,6 +79,39 @@ export const basicNodes = {
       );
     },
   },
+  styled_blockquote: {
+    content: 'block+',
+    group: 'block',
+    attrs: {
+      'class': 'styled',
+      'data-card-id': { default: null },
+    },
+    parseDOM: [
+      {
+        tag: 'blockquote.styled',
+        getAttrs(dom) {
+          return {
+            'class': 'styled',
+            'data-card-id': dom.getAttribute('data-card-id'),
+          };
+        },
+      },
+    ],
+    toDOM(node) {
+      return ['blockquote', {'class': 'styled', 'data-card-id': node.attrs['data-card-id'] }, 0];
+    },
+    toStatic(node, options, isSelected, isEditable, editorProps, children) {
+      const attrs = {};
+      if (node.attrs && node.attrs['data-card-id']) {
+        attrs['data-card-id'] = node.attrs['data-card-id'];
+      }
+      return (
+        <blockquote className="styled" key={node.currIndex} {...attrs}>
+          {children}
+        </blockquote>
+      );
+    },
+  },
   horizontal_rule: {
     group: 'block',
     parseDOM: [{ tag: 'hr' }],

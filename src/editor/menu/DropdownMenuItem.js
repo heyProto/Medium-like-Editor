@@ -29,12 +29,28 @@ class DropdownMenuItem extends Component {
       isOpened: false,
       selected: this.props.placeHolder,
     };
+
+    this.handleClickOutside = this.handleClickOutside.bind(this)
   }
 
-  handleClickOutside() {
-    this.setState({
-      isOpened: false,
-    });
+  handleClick() {
+    if (!this.state.isOpened) {
+      document.addEventListener('click', this.handleClickOutside, false);
+    } else {
+      document.removeEventListener('click', this.handleClickOutside, false);
+    }
+
+    this.setState(prevState => ({
+      isOpened: !prevState.isOpened,
+    }));
+  }
+
+  handleClickOutside(e) {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+
+    this.handleClick();
   }
 
   handleSelect(name) {
@@ -47,27 +63,20 @@ class DropdownMenuItem extends Component {
     }
   }
 
-  toggleList() {
-    this.setState(prevState => ({
-      isOpened: !prevState.isOpened,
-    }));
-  }
-
   render() {
     const list = this.props.items;
     const { isOpened, selected } = this.state;
     let contentDisplay = (isOpened) ? 'inherit' : 'none'
 
     return (
-      <div className="editor-dropdown">
-        <div className="proto-menuitem" onClick={() => this.toggleList()} style={{height: '49px'}}>
+      <div className="editor-dropdown" ref={node => { this.node = node; }}>
+        <div className="proto-menuitem" onClick={() => this.handleClick()}>
           <div className="dd-header-title">{selected}</div>
           
-          {isOpened ? (
-            <FontAwesomeIcon icon="angle-up" size="2x" />
-          ) : (
-            <FontAwesomeIcon icon="angle-down" size="2x" />
-          )}
+          {this.props.faIcon ? 
+          <FontAwesomeIcon icon={this.props.faIcon} size="lg" /> :
+          <img src={this.props.icon} width="16px" style={{transform: 'translate(100%, 100%)'}} />
+        }
         </div>
         <div className="dd-content" style={{display: contentDisplay}}>
         {

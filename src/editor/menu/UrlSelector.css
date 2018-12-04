@@ -2,5 +2,15 @@
 	height: 50px;
     width: 50px;
     display: inline-block;
-    vertical-align: bottom;
+    vertical-align: top;
+}
+
+.url-selector {
+	position: relative;
+	width: min-content;
+    padding: 10px;
+    transition: all 0.1s ease-in;
+    box-shadow: 2px 2px 4px 0px #a9a9a9;
+    font-family: 'Montserrat', sans-serif;
+    background: white;
 }

@@ -1,9 +1,11 @@
 .editor-dropdown {
 	display: inline-block;
 	position: relative;
+	vertical-align: top;
 }
 
 .dd-content {
 	position: absolute;
 	display:none;
 }
+

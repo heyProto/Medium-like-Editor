@@ -14,4 +14,7 @@
 
 .protoEditorView {
     white-space: pre-wrap;
+    overflow: scroll;
+    height: 75vh;
+    outline: none;
 }
