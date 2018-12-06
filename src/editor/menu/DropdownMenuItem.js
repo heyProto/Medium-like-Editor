@@ -17,8 +17,7 @@ const propTypes = {
   children: PropTypes.object,
   command: PropTypes.func,
   isActive: PropTypes.bool,
-  isAllowed: PropTypes.bool,
-  level: PropTypes.num
+  isAllowed: PropTypes.bool
 };
 
 
@@ -80,7 +79,7 @@ class DropdownMenuItem extends Component {
         </div>
         <div className="dd-content" style={{display: contentDisplay}}>
         {
-            list.map(e => {return (<MenuItem {...e} isAllowed={true}>{e.title}</MenuItem>)}
+            list.map(e => {return (<MenuItem key={e.title} {...e} isAllowed={true}>{e.title}</MenuItem>)}
         )}
         </div>
       </div>

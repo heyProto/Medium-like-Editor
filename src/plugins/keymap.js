@@ -94,6 +94,7 @@ export default (schema)=> {
 		bind('Mod-]', sinkListItem(schema.nodes.list_item));
 		bind('Tab', sinkListItem(schema.nodes.list_item));
 		bind('Shift-Tab', liftListItem(schema.nodes.list_item));
+		// bind('Backspace', liftListItem(schema.nodes.list_item));
 	}
 	if (schema.nodes.paragraph) {
 		bind('Shift-Ctrl-0', setBlockType(schema.nodes.paragraph));

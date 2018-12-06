@@ -38,7 +38,6 @@ library.add(
 const propTypes = {
   editorState: PropTypes.object,
   dispatchTransaction: PropTypes.func,
-  children: PropTypes.object,
   command: PropTypes.func,
   isActive: PropTypes.bool,
   isAllowed: PropTypes.bool,
@@ -72,8 +71,8 @@ class MenuItem extends Component {
       <div className="proto-menuitem-div">
       <button
         className="proto-menuitem"
-        disabled={!this.props.isAllowed}
         active={this.props.isActive ? 'true' : 'false'}
+        disabled={!this.props.isAllowed}
         onMouseDown={this.handleMouseDown}
         title={this.title}
         alt={this.title}

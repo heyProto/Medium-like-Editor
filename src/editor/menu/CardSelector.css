@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-.card-selector {
-	display: inline-block;
-	position: relative;
+.card-selector-button {
+	height: 50px;
+    width: 50px;
+    display: inline-block;
+    vertical-align: top;
 }
 
-.card-dropdown-content {
-	width: min-content;
+.card-selector-content {
+	width: 150px;
     position: relative;
     padding: 10px;
     transition: all 0.1s ease-in;

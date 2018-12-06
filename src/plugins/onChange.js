@@ -226,7 +226,6 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'bold',
       run: applyToggleMark.bind(this, schema.marks.strong, {}),
-      isAllowed: true,
       isActive: schema.marks.strong && markIsActive(schema.marks.strong),
     },
     {
@@ -235,7 +234,6 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'italic',
       run: applyToggleMark.bind(this, schema.marks.em, {}),
-      isAllowed: true,
       isActive: schema.marks.em && markIsActive(schema.marks.em),
     },
     {
@@ -244,7 +242,6 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'code',
       run: applyToggleMark.bind(this, schema.marks.code, {}),
-      isAllowed: true,
       isActive: schema.marks.code && markIsActive(schema.marks.code),
     },
     {
@@ -253,7 +250,7 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'subscript',
       run: applyToggleMark.bind(this, schema.marks.sub, {}),
-      isAllowed: !markIsActive(schema.marks.sup),
+      // isAllowed: !markIsActive(schema.marks.sup),
       isActive: schema.marks.sub && markIsActive(schema.marks.sub),
     },
     {
@@ -262,7 +259,7 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'superscript',
       run: applyToggleMark.bind(this, schema.marks.sup, {}),
-      isAllowed: !markIsActive(schema.marks.sub),
+      // isAllowed: !markIsActive(schema.marks.sub),
       isActive: schema.marks.sup && markIsActive(schema.marks.sup),
     },
     {
@@ -271,16 +268,14 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'strikethrough',
       run: applyToggleMark.bind(this, schema.marks.strike, {}),
-      isAllowed: true,
       isActive: schema.marks.strike && markIsActive(schema.marks.strike),
     },
     {
       title: 'Link',
       section: 'transform',
-      type: 'prompt',
+      type: 'url',
       faIcon: 'link',
       run: applyToggleMark.bind(this, schema.marks.link),
-      isAllowed: true,
       isActive: schema.marks.link && markIsActive(schema.marks.link),
     },
     {
@@ -289,7 +284,6 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'list-ul',
       run: toggleWrapList.bind(this, schema.nodes.bullet_list),
-      isAllowed: true,
       isActive:
         schema.nodes.bullet_list && blockTypeIsActive(schema.nodes.bullet_list),
     },
@@ -299,7 +293,6 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'list-ol',
       run: toggleWrapList.bind(this, schema.nodes.ordered_list),
-      isAllowed: true,
       isActive:
         schema.nodes.ordered_list &&
         blockTypeIsActive(schema.nodes.ordered_list),
@@ -310,7 +303,6 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'quote-left',
       run: toggleWrap.bind(this, schema.nodes.blockquote),
-      isAllowed: true,
       isActive:
         schema.nodes.blockquote && blockTypeIsActive(schema.nodes.blockquote),
     },
@@ -320,7 +312,6 @@ const getMenuItems = editorView => {
       type: 'button',
       faIcon: 'quote-right',
       run: toggleWrap.bind(this, schema.nodes.styled_blockquote),
-      isAllowed: true,
       isActive:
         schema.nodes.styled_blockquote && blockTypeIsActive(schema.nodes.styled_blockquote),
     },
@@ -335,7 +326,7 @@ const getMenuItems = editorView => {
     {
       title: 'Card',
       section: 'insert',
-      type: 'prompt',
+      type: 'card',
       faIcon: 'square',
       run: schema.nodes.card.spec.onInsert.bind(this, editorView),
       isAllowed: canInsert(editorView.state, schema.nodes.card),

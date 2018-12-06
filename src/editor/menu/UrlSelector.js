@@ -57,7 +57,7 @@ class UrlSelector extends Component {
     e.stopPropagation();
     e.preventDefault();
     this.validateUrl();
-    this.toggleSelector();
+    this.handleClick();
     this.props.run({
       href: this.state.urlValue,
       title: this.state.titleValue,
@@ -80,7 +80,7 @@ class UrlSelector extends Component {
     return (
       <div className="url-selector-button" ref={node => { this.node = node; }}>
         <MenuItem {...buttonProps} />
-            <div className="url-selector" style={{display: contentDisplay}}>
+            <div className="url-selector-content" style={{display: contentDisplay}}>
               <label>
                 Url:
                 <input
