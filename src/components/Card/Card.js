@@ -26,15 +26,15 @@ class Card extends Component {
       margin: cardMargin,
       float: cardFloat,
     };
+    this.cardRef = React.createRef();
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     let id = 'card-' + this.props.attrs['data-card-id'];
-    let element = document.getElementById(id);
+    // let element = document.getElementById(id);
+    // let element = document.createElement("div");
+    let element = this.cardRef.current;
     // if (element.firstChild) element.removeChild(element.firstChild);
-    var range = document.createRange();
-    range.selectNodeContents(element);
-    range.deleteContents();
     if (element) {
       const embed = new ProtoEmbed.initFrame(
         element,
@@ -42,6 +42,7 @@ class Card extends Component {
         'col7'
       );
     }
+    // this.setState({cardDOM: element})
   }
 
   render() {
@@ -51,18 +52,8 @@ class Card extends Component {
         id={'card-' + attrs['data-card-id']}
         className="card-wrapper"
         style={this.cardStyle}
+        ref={this.cardRef}
       >
-        {/* {attrs.url && (
-          <iframe
-            data-card-id={attrs['data-card-id']}
-            data-template-id={attrs['data-template-id']}
-            title={attrs.caption}
-            src={attrs.url}
-            height={`${attrs.height}px`}
-            allowFullScreen
-            frameBorder="0"
-          />
-        )} */}
         {!attrs.url && <div className="empty-iframe">Enter Source URL</div>}
       </div>
     );

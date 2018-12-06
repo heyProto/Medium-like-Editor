@@ -18,3 +18,8 @@
     height: 75vh;
     outline: none;
 }
+
+.styled {
+	border-left: 3px solid #808080;
+	padding-left: 10px;
+}

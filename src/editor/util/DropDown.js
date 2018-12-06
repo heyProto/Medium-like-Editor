@@ -29,10 +29,12 @@ class DropDown extends Component {
 
   handleSelect(key) {
     if (this.state.selected !== key) {
-      this.setState({
+      this.setState(prevState => ({
         selected: key,
-      });
+      isOpened: !prevState.isOpened,
+      }));
       this.props.onChange(key);
+      this.setState({ selected: null })
     }
   }
 
@@ -45,7 +47,7 @@ class DropDown extends Component {
   render() {
     const list = this.props.options;
     const { isOpened, selected } = this.state;
-    const selectedTitle = selected && list.find(x => x.key === selected);
+    const selectedTitle = selected && list.find(x => x.key === selected).title;
     return (
       <div className="editor-dropdown">
         <div className="dd-header" onClick={() => this.toggleList()}>

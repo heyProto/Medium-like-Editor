@@ -23,35 +23,57 @@ class CardSelector extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.toggleSelector = this.toggleSelector.bind(this);
 
-    this.state = { isOpened: false };
+    this.state = { isOpened: false,
+                    cardList: null };
   }
+
+  componentDidMount() {
+    let cardList = [{
+          url:
+            'https://cdn.protograph.pykih.com/99e448b6fcb668c5a3d4/index.html?view_cast_id=7a312bd07ab133968703ec4e&base_url=https://www.responsiblebiz.org',
+          size: 75,
+          height: 419,
+          align: 'center',
+          caption: 'Image',
+          'data-card-id': 62499,
+          'data-template-id': '47',
+        }]
+
+    cardList.map(e => {
+      e.key = e['data-card-id'];
+      e.title = e.caption;
+      return e
+    })
+
+    this.setState({ cardList })
+  }
+
+  hideModal = () => {
+    this.setState({ isOpened: false });
+  };
 
   handleSubmit(e) {
     e.stopPropagation();
     e.preventDefault();
     this.toggleSelector();
-    this.props.run(this.state.cardIframe);
+    this.props.run(this.state.card);
   }
 
   handleChange(e) {
-    let card = (this.props['card-list'] || [{ id: 1, name: 'test' }]).find(
-      x => x.name === e
+    let card = this.state.cardList.find(
+      x => x.key === e
     );
-
-    let cardIframe = {
-      url: 'dummy',
-      caption: 'dummy',
-    };
 
     this.setState({
       card: card,
-      cardIframe: cardIframe,
     });
+
+    console.log(card)
   }
 
   toggleSelector(e) {
     let isOpened = this.state.isOpened;
-    this.setState({ isOpened: !isOpened, card: null, cardIframe: null });
+    this.setState({ isOpened: !isOpened, card: null});
   }
 
   render() {
@@ -63,39 +85,57 @@ class CardSelector extends Component {
       isAllowed: this.props.isAllowed,
     };
 
-    let contentDisplay = this.state.isOpened ? 'inherit' : 'none';
     return (
-      <div className="card-selector-button">
-        <MenuItem {...buttonProps}>
-          {/* <img src={icon} /> */}
-          <ProtoIcon style={{ height: '25px', width: '25px' }} />
-        </MenuItem>
-        {this.state && this.state.isOpened && (
-          <div
-            className="card-selector-content"
-            style={{ display: contentDisplay }}
-          >
-            <DropDown
-              options={this.props['card-list'] || [{ id: 1, name: 'test' }]}
+    <div>
+    <Modal isOpened={this.state.isOpened} handleClose={this.hideModal}>
+          <DropDown
+              options={this.state.cardList}
               onChange={this.handleChange}
-              placeHolder="Select Card ..."
+              placeHolder="Select Card"
             />
-            <button disabled={!this.state.card} onMouseDown={this.handleSubmit}>
+              <div className="card-preview">
+                {this.state.card && (<Card attrs={this.state.card} />)}
+              </div>
+        
+            <button disabled={!this.state.card} onClick={this.handleSubmit}>
               Submit
             </button>
-            <button onMouseDown={this.toggleSelector}>Cancel</button>
-            {this.state.cardIframe && (
-              <div className="card-preview">
-                <Card attrs={this.state.cardIframe} />
-              </div>
-            )}
-          </div>
-        )}
+        </Modal>
+        <MenuItem {...buttonProps}>
+          <ProtoIcon style={{ height: '25px', width: '25px' }} />
+        </MenuItem>
       </div>
     );
   }
 }
 
+const Modal = ({ handleClose, isOpened, children }) => {
+  const showHideClassName = isOpened ? "modal display-block" : "modal display-none";
+
+  return (
+    <div className={showHideClassName}>
+      <section className="modal-main">
+        {children}
+        <button
+          onClick={handleClose}
+        >
+          Close
+        </button>
+      </section>
+    </div>
+  );
+};
+
 CardSelector.propTypes = propTypes;
 // CardSelector.defaultProps = defaultProps;
 export default CardSelector;
+
+
+// {this.state && this.state.isOpened && (
+//           <div
+//             className="card-selector-content"
+//             style={{ display: contentDisplay }}
+//           >
+//             
+//           </div>
+//         )}
