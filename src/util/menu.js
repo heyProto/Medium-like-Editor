@@ -273,7 +273,6 @@ export function buildMenuItems(schema) {
       },
     });
   }
-  console.log(r);
   let cut = arr => arr.filter(x => x);
   r.insertMenu = new Dropdown(cut([r.insertImage, r.insertHorizontalRule]), {
     label: 'Insert',
@@ -294,7 +293,6 @@ export function buildMenuItems(schema) {
     ]),
     { label: 'Type...', class: 'AAA', css: 'color:blue;' }
   );
-  console.log(r.typeMenu);
 
   r.inlineMenu = [
     cut([

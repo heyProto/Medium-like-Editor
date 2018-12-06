@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import DropDown from '../util/DropDown';
-import Card from '../../components/Card/Card';
-import './UrlSelector.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './UrlSelector.css';
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -22,8 +22,8 @@ class UrlSelector extends Component {
     this.handleClick = this.handleClick.bind(this);
 
     this.targets = [
-      { name: 'Same Page', value: '_top' },
-      { name: 'New Page', value: '_blank' },
+      { key: 'top', title: 'Same Page', value: '_top' },
+      { key: 'blank', title: 'New Page', value: '_blank' },
     ];
 
     this.state = { isOpened: false,
@@ -79,7 +79,10 @@ class UrlSelector extends Component {
 
     return (
       <div className="url-selector-button" ref={node => { this.node = node; }}>
-        <MenuItem {...buttonProps} />
+        <MenuItem {...buttonProps}>
+          <FontAwesomeIcon icon={this.props.faIcon} size="lg" />
+        </MenuItem>
+        {this.state && this.state.isOpened && (
             <div className="url-selector-content" style={{display: contentDisplay}}>
               <label>
                 Url:
@@ -105,9 +108,9 @@ class UrlSelector extends Component {
               <button onMouseDown={this.handleSubmit}>Submit</button>
               <button onMouseDown={this.toggleSelector}>Cancel</button>
             </div>
+        )}
       </div>
     );
-  
   }
 }
 

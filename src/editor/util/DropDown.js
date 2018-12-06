@@ -17,7 +17,7 @@ class DropDown extends Component {
     super(props);
     this.state = {
       isOpened: false,
-      selected: this.props.placeHolder,
+      selected: null,
     };
   }
 
@@ -27,13 +27,12 @@ class DropDown extends Component {
     });
   }
 
-  handleSelect(name) {
-    console.log(name);
-    if (this.state.selected !== name) {
+  handleSelect(key) {
+    if (this.state.selected !== key) {
       this.setState({
-        selected: name,
+        selected: key,
       });
-      this.props.onChange(name);
+      this.props.onChange(key);
     }
   }
 
@@ -46,10 +45,13 @@ class DropDown extends Component {
   render() {
     const list = this.props.options;
     const { isOpened, selected } = this.state;
+    const selectedTitle = selected && list.find(x => x.key === selected);
     return (
       <div className="editor-dropdown">
         <div className="dd-header" onClick={() => this.toggleList()}>
-          <div className="dd-header-title">{selected}</div>
+          <div className="dd-header-title">
+            {selectedTitle || this.props.placeHolder}
+          </div>
           {isOpened ? (
             <FontAwesomeIcon icon="angle-up" size="2x" />
           ) : (
@@ -61,10 +63,10 @@ class DropDown extends Component {
             {list.map(item => (
               <li
                 className="dd-list-item"
-                key={item.id}
-                onClick={e => this.handleSelect(item.name)}
+                key={item.key}
+                onClick={e => this.handleSelect(item.key)}
               >
-                {item.name}
+                {item.title}
               </li>
             ))}
           </ul>

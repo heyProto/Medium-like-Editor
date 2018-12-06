@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
   faBold,
   faItalic,
@@ -15,7 +15,7 @@ import {
   faLink,
   faListOl,
   faListUl,
-  faSquare
+  faSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import './MenuItem.css';
 
@@ -69,20 +69,16 @@ class MenuItem extends Component {
     // console.log(this.props)
     return (
       <div className="proto-menuitem-div">
-      <button
-        className="proto-menuitem"
-        active={this.props.isActive ? 'true' : 'false'}
-        disabled={!this.props.isAllowed}
-        onMouseDown={this.handleMouseDown}
-        title={this.title}
-        alt={this.title}
-        editorState={this.editorState}
-      >
-        {this.props.faIcon ? 
-          <FontAwesomeIcon icon={this.props.faIcon} size="lg" /> :
-          <img src={this.props.icon} width="16px"/>
-        }
-      </button>
+        <button
+          className="proto-menuitem"
+          disabled={!this.props.isAllowed}
+          active={this.props.isActive ? 'true' : 'false'}
+          onMouseDown={this.handleMouseDown}
+          title={this.title}
+          alt={this.title}
+        >
+          {this.props.children}
+        </button>
       </div>
     );
   }

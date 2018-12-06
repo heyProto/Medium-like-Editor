@@ -83,7 +83,7 @@ export const basicNodes = {
     content: 'block+',
     group: 'block',
     attrs: {
-      'class': 'styled',
+      class: { default: 'styled' },
       'data-card-id': { default: null },
     },
     parseDOM: [
@@ -91,14 +91,18 @@ export const basicNodes = {
         tag: 'blockquote.styled',
         getAttrs(dom) {
           return {
-            'class': 'styled',
+            class: 'styled',
             'data-card-id': dom.getAttribute('data-card-id'),
           };
         },
       },
     ],
     toDOM(node) {
-      return ['blockquote', {'class': 'styled', 'data-card-id': node.attrs['data-card-id'] }, 0];
+      return [
+        'blockquote',
+        { class: 'styled', 'data-card-id': node.attrs['data-card-id'] },
+        0,
+      ];
     },
     toStatic(node, options, isSelected, isEditable, editorProps, children) {
       const attrs = {};

@@ -271,9 +271,19 @@ const getMenuItems = editorView => {
       isActive: schema.marks.strike && markIsActive(schema.marks.strike),
     },
     {
+      title: 'Heading',
+      section: 'transform',
+      type: 'dropdown',
+      placeHolder: 'H',
+      items: headers,
+      run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
+      isAllowed:
+        schema.nodes.heading && blockTypeIsActive(schema.nodes.heading),
+    },
+    {
       title: 'Link',
       section: 'transform',
-      type: 'url',
+      type: 'prompt',
       faIcon: 'link',
       run: applyToggleMark.bind(this, schema.marks.link),
       isActive: schema.marks.link && markIsActive(schema.marks.link),
@@ -313,7 +323,8 @@ const getMenuItems = editorView => {
       faIcon: 'quote-right',
       run: toggleWrap.bind(this, schema.nodes.styled_blockquote),
       isActive:
-        schema.nodes.styled_blockquote && blockTypeIsActive(schema.nodes.styled_blockquote),
+        schema.nodes.styled_blockquote &&
+        blockTypeIsActive(schema.nodes.styled_blockquote),
     },
     {
       title: 'Horizontal Rule',
@@ -326,20 +337,10 @@ const getMenuItems = editorView => {
     {
       title: 'Card',
       section: 'insert',
-      type: 'card',
+      type: 'prompt',
       faIcon: 'square',
       run: schema.nodes.card.spec.onInsert.bind(this, editorView),
       isAllowed: canInsert(editorView.state, schema.nodes.card),
-    },
-    {
-      title: 'Heading',
-      section: 'transform',
-      type: 'dropdown',
-      items: headers,
-      icon: 'header.svg',
-      run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
-      isAllowed:
-        schema.nodes.heading && blockTypeIsActive(schema.nodes.heading),
     },
   ];
 

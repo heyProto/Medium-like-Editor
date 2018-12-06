@@ -4,7 +4,8 @@ import MenuItem from './MenuItem.js';
 import DropdownMenuItem from './DropdownMenuItem';
 import CardSelector from './CardSelector.js';
 import UrlSelector from './UrlSelector.js';
-import './Menu.css'
+import './Menu.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -16,52 +17,60 @@ class Menu extends Component {
     super(props);
   }
 
-  isAllowed = (e) => {
+  isAllowed = e => {
     if (e.section === 'transform') {
-      if (this.props.editorChange.menuItems.find(x => x.title === 'Superscript').isActive === true && e.title === 'Subscript') {
-        return false
+      if (
+        this.props.editorChange.menuItems.find(x => x.title === 'Superscript')
+          .isActive === true &&
+        e.title === 'Subscript'
+      ) {
+        return false;
+      } else if (
+        this.props.editorChange.menuItems.find(x => x.title === 'Subscript')
+          .isActive === true &&
+        e.title === 'Superscript'
+      ) {
+        return false;
       }
-      else if (this.props.editorChange.menuItems.find(x => x.title === 'Subscript').isActive === true && e.title === 'Superscript') {
-        return false
-      }
-      if (e.title === 'Link' && !this.props.editorChange.selectedText) { //link disabled when nothing selected
-        return false
-      }
-      else if (this.props.editorChange.selectedNode) { //marks disabled when card selected
-        return false
-      }
-      else {
-        return true
+      if (e.title === 'Link' && !this.props.editorChange.selectedText) {
+        //link disabled when nothing selected
+        return false;
+      } else if (this.props.editorChange.selectedNode) {
+        //marks disabled when card selected
+        return false;
+      } else {
+        return true;
       }
     }
     if (e.title === 'Horizontal Rule' && this.props.editorChange.selectedText) {
-      return false
+      return false;
+    } else {
+      return true;
     }
-    else {
-      return true
-    }
-  }
+  };
 
   render() {
-    console.log(this.props.editorChange)
+    console.log(this.props.editorChange);
     return (
       <div className="proto-menu">
         {this.props.editorChange &&
           this.props.editorChange.menuItems.map(e => {
+            e.isAllowed = this.isAllowed(e);
             if (e.type === 'button') {
               return (
-                <MenuItem key={e.title}
-                  {...e}
-                  isAllowed={this.isAllowed(e)}
-                  selection={this.props.editorChange.selection}
-                />
+                <MenuItem {...e} selection={this.props.editorChange.selection}>
+                  <FontAwesomeIcon icon={e.faIcon} size="lg" />
+                </MenuItem>
               );
             } else if (e.type === 'dropdown') {
-              return <DropdownMenuItem key={e.title} {...e} isAllowed={this.isAllowed(e)} />;
-            } else if (e.type === 'url') {
-              return <UrlSelector key={e.title} {...e} isAllowed={this.isAllowed(e)} />;
-            } else if (e.type === 'card') {
-              return <CardSelector key={e.title} {...e} isAllowed={this.isAllowed(e)} />;
+              return <DropdownMenuItem {...e} />;
+            } else if (e.type === 'prompt') {
+              switch (e.title) {
+                case 'Card':
+                  return <CardSelector {...e} />;
+                case 'Link':
+                  return <UrlSelector {...e} />;
+              }
             }
           })}
       </div>

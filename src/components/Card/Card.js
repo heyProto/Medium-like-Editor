@@ -31,6 +31,10 @@ class Card extends Component {
   componentDidUpdate() {
     let id = 'card-' + this.props.attrs['data-card-id'];
     let element = document.getElementById(id);
+    // if (element.firstChild) element.removeChild(element.firstChild);
+    var range = document.createRange();
+    range.selectNodeContents(element);
+    range.deleteContents();
     if (element) {
       const embed = new ProtoEmbed.initFrame(
         element,

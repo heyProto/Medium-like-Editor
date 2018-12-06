@@ -531,12 +531,10 @@ export default class App extends Component {
       },
     ];
 
-    // this.state && console.log(this.state.doc)
     return (
       <div>
         <div className="editor-container">
           <Editor cards={cards} />
-          {/* onChange={doc => this.setState({ doc })}/> */}
         </div>
         <pre>
           {/* {this.state && <code>{JSON.stringify(this.state.doc.view.state.doc, null, 2)}</code>} */}
