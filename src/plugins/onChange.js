@@ -680,6 +680,11 @@ export default (schema, props) => {
                 /* this fixes that issue. */
                 const sel = NodeSelection.create(editorView.state.doc, start);
                 transaction.setSelection(sel);
+              } else {
+                let sel = editorView.state.selection;
+                sel.visible = true;
+
+                transaction.setSelection(sel);
               }
               editorView.dispatch(transaction);
             }

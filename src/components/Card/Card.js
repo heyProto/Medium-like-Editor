@@ -1,9 +1,11 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Card.css';
 
 const propTypes = {
   attrs: PropTypes.object.isRequired,
+  isSelected: PropTypes.bool.isRequired,
 };
 
 class Card extends Component {
@@ -50,7 +52,7 @@ class Card extends Component {
     return (
       <div
         id={'card-' + attrs['data-card-id']}
-        className="card-wrapper"
+        className={`card-wrapper ${this.props.isSelected ? 'selected' : ''}`}
         style={this.cardStyle}
         ref={this.cardRef}
       >

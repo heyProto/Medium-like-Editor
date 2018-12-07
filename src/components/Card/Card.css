@@ -1,0 +1,6 @@
+.card-wrapper iframe {
+  pointer-events: none;
+}
+.card-wrapper.selected iframe {
+  pointer-events: none;
+}

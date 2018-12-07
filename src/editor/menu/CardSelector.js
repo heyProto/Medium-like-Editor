@@ -23,29 +23,30 @@ class CardSelector extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.toggleSelector = this.toggleSelector.bind(this);
 
-    this.state = { isOpened: false,
-                    cardList: null };
+    this.state = { isOpened: false, cardList: null };
   }
 
   componentDidMount() {
-    let cardList = [{
-          url:
-            'https://cdn.protograph.pykih.com/99e448b6fcb668c5a3d4/index.html?view_cast_id=7a312bd07ab133968703ec4e&base_url=https://www.responsiblebiz.org',
-          size: 75,
-          height: 419,
-          align: 'center',
-          caption: 'Image',
-          'data-card-id': 62499,
-          'data-template-id': '47',
-        }]
+    let cardList = [
+      {
+        url:
+          'https://cdn.protograph.pykih.com/99e448b6fcb668c5a3d4/index.html?view_cast_id=7a312bd07ab133968703ec4e&base_url=https://www.responsiblebiz.org',
+        size: 75,
+        height: 419,
+        align: 'center',
+        caption: 'Image',
+        'data-card-id': 62499,
+        'data-template-id': '47',
+      },
+    ];
 
     cardList.map(e => {
       e.key = e['data-card-id'];
       e.title = e.caption;
-      return e
-    })
+      return e;
+    });
 
-    this.setState({ cardList })
+    this.setState({ cardList });
   }
 
   hideModal = () => {
@@ -60,20 +61,18 @@ class CardSelector extends Component {
   }
 
   handleChange(e) {
-    let card = this.state.cardList.find(
-      x => x.key === e
-    );
+    let card = this.state.cardList.find(x => x.key === e);
 
     this.setState({
       card: card,
     });
 
-    console.log(card)
+    console.log(card);
   }
 
   toggleSelector(e) {
     let isOpened = this.state.isOpened;
-    this.setState({ isOpened: !isOpened, card: null});
+    this.setState({ isOpened: !isOpened, card: null });
   }
 
   render() {
@@ -86,20 +85,22 @@ class CardSelector extends Component {
     };
 
     return (
-    <div>
-    <Modal isOpened={this.state.isOpened} handleClose={this.hideModal}>
+      <div>
+        <Modal isOpened={this.state.isOpened} handleClose={this.hideModal}>
           <DropDown
-              options={this.state.cardList}
-              onChange={this.handleChange}
-              placeHolder="Select Card"
-            />
-              <div className="card-preview">
-                {this.state.card && (<Card attrs={this.state.card} />)}
-              </div>
-        
-            <button disabled={!this.state.card} onClick={this.handleSubmit}>
-              Submit
-            </button>
+            options={this.state.cardList}
+            onChange={this.handleChange}
+            placeHolder="Select Card"
+          />
+          <div className="card-preview">
+            {this.state.card && (
+              <Card attrs={this.state.card} isSelected={false} />
+            )}
+          </div>
+
+          <button disabled={!this.state.card} onClick={this.handleSubmit}>
+            Submit
+          </button>
         </Modal>
         <MenuItem {...buttonProps}>
           <ProtoIcon style={{ height: '25px', width: '25px' }} />
@@ -110,17 +111,15 @@ class CardSelector extends Component {
 }
 
 const Modal = ({ handleClose, isOpened, children }) => {
-  const showHideClassName = isOpened ? "modal display-block" : "modal display-none";
+  const showHideClassName = isOpened
+    ? 'modal display-block'
+    : 'modal display-none';
 
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
         {children}
-        <button
-          onClick={handleClose}
-        >
-          Close
-        </button>
+        <button onClick={handleClose}>Close</button>
       </section>
     </div>
   );
@@ -130,12 +129,11 @@ CardSelector.propTypes = propTypes;
 // CardSelector.defaultProps = defaultProps;
 export default CardSelector;
 
-
 // {this.state && this.state.isOpened && (
 //           <div
 //             className="card-selector-content"
 //             style={{ display: contentDisplay }}
 //           >
-//             
+//
 //           </div>
 //         )}
