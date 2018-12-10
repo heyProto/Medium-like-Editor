@@ -59,3 +59,24 @@ ul li > ul li > ul li > ul li > ul li {
 ul li > ul li > ul li > ul li > ul li > ul li {
 	list-style-type: square;
 }
+
+.proto-button, .proto-button-close{
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    display: inline-block;
+    margin: 4px;
+}
+
+.proto-button {
+	color: #fff;
+    background-color: #286EFA;
+    border-color: #286EFA;
+}
+
+.proto-button-close {
+	color: #fff;
+    background-color: #787878;
+    border-color: #787878;
+}

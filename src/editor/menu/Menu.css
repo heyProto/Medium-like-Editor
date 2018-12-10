@@ -2,3 +2,7 @@
 	background-color: #ededed;
 	padding: 5px 0px;
 }
+
+.proto-menu, .proto-menu > .proto-menuitem-div:first-child {
+	border-radius: 3px;
+}

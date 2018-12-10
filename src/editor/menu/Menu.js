@@ -61,7 +61,7 @@ class Menu extends Component {
             e.isAllowed = this.isAllowed(e);
             if (e.type === 'button') {
               return (
-                <MenuItem {...e} selection={this.props.editorChange.selection}>
+                <MenuItem {...e} alt={e.title} selection={this.props.editorChange.selection}>
                   <FontAwesomeIcon icon={e.faIcon} size="lg" />
                 </MenuItem>
               );

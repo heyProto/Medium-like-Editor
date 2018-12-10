@@ -1,0 +1,17 @@
+.editor-dropdown {
+	width: max-content;
+}
+
+.dd-header-title {
+	display: inline-block;
+	line-height: 30px;
+}
+
+.dd-list {
+	position: fixed;
+	background-color: white;
+}
+
+.dd-list-item {
+	padding: 3px 0px;
+}

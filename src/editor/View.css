@@ -17,7 +17,12 @@
     overflow: scroll;
     height: 75vh;
     outline: none;
+    margin-bottom: 10px;
 }
+
+.protoEditorView > div {
+padding-top:10px;
+	}
 
 .styled {
 	border-left: 3px solid #808080;

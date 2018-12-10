@@ -3,6 +3,7 @@
     background-color: #ededed;
     width: 35px;
     height: 30px;
+    text-align: center;
 }
 
 .proto-menuitem:hover {

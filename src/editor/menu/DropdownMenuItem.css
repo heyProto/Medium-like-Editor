@@ -7,5 +7,10 @@
 .dd-content {
 	position: absolute;
 	display:none;
+	background-color: white;
+}
+
+.dd-list-item {
+	background-color: white;
 }
 

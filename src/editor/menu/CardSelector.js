@@ -87,10 +87,12 @@ class CardSelector extends Component {
     return (
       <div className="card-selector-button">
         <Modal isOpened={this.state.isOpened} handleClose={this.hideModal}>
+        <h3 className="modal-heading">Insert Card</h3>
           <DropDown
             options={this.state.cardList}
             onChange={this.handleChange}
             placeHolder="Select Card"
+            width="100px"
           />
           <div className="card-preview">
             {this.state.card && (
@@ -98,9 +100,9 @@ class CardSelector extends Component {
             )}
           </div>
 
-          <button disabled={!this.state.card} onClick={this.handleSubmit}>
+          <div className="proto-button" disabled={!this.state.card} onClick={this.handleSubmit}>
             Submit
-          </button>
+          </div>
         </Modal>
         <MenuItem {...buttonProps}>
           <ProtoIcon style={{ height: '20px', width: '20px' }} />
@@ -119,7 +121,7 @@ const Modal = ({ handleClose, isOpened, children }) => {
     <div className={showHideClassName}>
       <section className="modal-main">
         {children}
-        <button onClick={handleClose}>Close</button>
+        <div className="proto-button-close" onClick={handleClose}>Close</div>
       </section>
     </div>
   );

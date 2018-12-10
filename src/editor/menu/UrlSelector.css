@@ -4,11 +4,11 @@
 }
 
 .url-selector-content {
-	position: relative;
+	position: absolute;
 	width: min-content;
     padding: 10px;
     transition: all 0.1s ease-in;
     box-shadow: 2px 2px 4px 0px #a9a9a9;
     font-family: 'Montserrat', sans-serif;
-    background: white;
+    background-color: white;
 }
