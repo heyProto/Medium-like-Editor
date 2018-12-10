@@ -85,7 +85,7 @@ class CardSelector extends Component {
     };
 
     return (
-      <div>
+      <div className="card-selector-button">
         <Modal isOpened={this.state.isOpened} handleClose={this.hideModal}>
           <DropDown
             options={this.state.cardList}
@@ -103,7 +103,7 @@ class CardSelector extends Component {
           </button>
         </Modal>
         <MenuItem {...buttonProps}>
-          <ProtoIcon style={{ height: '25px', width: '25px' }} />
+          <ProtoIcon style={{ height: '20px', width: '20px' }} />
         </MenuItem>
       </div>
     );

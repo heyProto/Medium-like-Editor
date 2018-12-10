@@ -18,6 +18,9 @@ class Menu extends Component {
   }
 
   isAllowed = e => {
+    if (e.title === 'Styled Blockquote' && this.props.editorChange.selectedNode) {
+      return false;
+    }
     if (e.section === 'transform') {
       if (
         this.props.editorChange.menuItems.find(x => x.title === 'Superscript')

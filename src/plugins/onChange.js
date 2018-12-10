@@ -173,7 +173,7 @@ const getMenuItems = editorView => {
 
   const headers = [
     {
-      title: 'header2',
+      title: 'H2',
       level: 2,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 2 }),
       icon: 'header2.svg',
@@ -182,7 +182,7 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 2 }),
     },
     {
-      title: 'header3',
+      title: 'H3',
       level: 3,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 3 }),
       icon: 'header3.svg',
@@ -191,7 +191,7 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 3 }),
     },
     {
-      title: 'header4',
+      title: 'H4',
       level: 4,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 4 }),
       icon: 'header4.svg',
@@ -200,7 +200,7 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 4 }),
     },
     {
-      title: 'header5',
+      title: 'H5',
       level: 5,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
       icon: 'header5.svg',
@@ -209,7 +209,7 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 5 }),
     },
     {
-      title: 'header6',
+      title: 'H6',
       level: 6,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 6 }),
       icon: 'header6.svg',
@@ -308,19 +308,10 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.ordered_list),
     },
     {
-      title: 'Blockquote',
-      section: 'block',
-      type: 'button',
-      faIcon: 'quote-left',
-      run: toggleWrap.bind(this, schema.nodes.blockquote),
-      isActive:
-        schema.nodes.blockquote && blockTypeIsActive(schema.nodes.blockquote),
-    },
-    {
       title: 'Styled Blockquote',
       section: 'block',
       type: 'button',
-      faIcon: 'quote-right',
+      faIcon: 'quote-left',
       run: toggleWrap.bind(this, schema.nodes.styled_blockquote),
       isActive:
         schema.nodes.styled_blockquote &&

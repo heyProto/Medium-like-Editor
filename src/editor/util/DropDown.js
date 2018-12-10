@@ -61,17 +61,17 @@ class DropDown extends Component {
           )}
         </div>
         {isOpened && (
-          <ul className="dd-list">
+          <div className="dd-list">
             {list.map(item => (
-              <li
+              <div
                 className="dd-list-item"
                 key={item.key}
                 onClick={e => this.handleSelect(item.key)}
               >
                 {item.title}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     );
