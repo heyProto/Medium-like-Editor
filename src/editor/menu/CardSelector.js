@@ -37,7 +37,6 @@ class CardSelector extends Component {
           headers: { 'Access-Token': cards_request.token }
         })
         .then(function (response) {
-          console.log(response)
           cardList = response.data.map(x => {
             return {
               url: x.iframe_url,
@@ -95,8 +94,6 @@ class CardSelector extends Component {
     this.setState({
       card: card
     })
-
-    console.log(card)
   }
 
   toggleSelector (e) {

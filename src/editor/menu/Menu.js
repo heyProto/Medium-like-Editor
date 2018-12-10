@@ -18,8 +18,11 @@ class Menu extends Component {
   }
 
   isAllowed = e => {
-    if (e.title === 'Styled Blockquote' && this.props.editorChange.selectedNode) {
-      return false;
+    if (
+      e.title === 'Styled Blockquote' &&
+      this.props.editorChange.selectedNode
+    ) {
+      return false
     }
     if (e.section === 'transform') {
       if (
@@ -53,7 +56,6 @@ class Menu extends Component {
   }
 
   render () {
-    console.log(this.props.editorChange)
     return (
       <div className='proto-menu'>
         {this.props.editorChange &&
@@ -71,7 +73,10 @@ class Menu extends Component {
               switch (e.title) {
                 case 'Card':
                   return (
-                    <CardSelector {...e} cards_request={this.props.cards_request} />
+                    <CardSelector
+                      {...e}
+                      cards_request={this.props.cards_request}
+                    />
                   )
                 case 'Link':
                   return <UrlSelector {...e} />
