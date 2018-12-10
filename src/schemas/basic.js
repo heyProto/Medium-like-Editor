@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 export const basicNodes = {
   doc: {
     content: 'block+',
     attrs: {
-      meta: { default: {} },
-    },
+      meta: { default: {} }
+    }
   },
   paragraph: {
     content: 'inline*',
@@ -13,71 +13,92 @@ export const basicNodes = {
     attrs: {
       class: { default: null },
       'data-card-id': { default: null },
+      'data-template-id': { default: null }
     },
     parseDOM: [
       {
         tag: 'p',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             class: dom.getAttribute('class'),
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
-      },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
+      }
     ],
-    toDOM(node) {
+    toDOM (node) {
       return [
         'p',
-        { class: node.attrs.class, 'data-card-id': node.attrs['data-card-id'] },
-        0,
-      ];
+        {
+          class: node.attrs.class,
+          'data-card-id': node.attrs['data-card-id'],
+          'data-template-id': node.attrs['data-template-id']
+        },
+        0
+      ]
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
-      const attrs = {};
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
+      const attrs = {}
       if (node.attrs && node.attrs.class) {
-        attrs.className = node.attrs.class;
+        attrs.className = node.attrs.class
       }
       if (node.attrs && node.attrs['data-card-id']) {
-        attrs['data-card-id'] = node.attrs['data-card-id'];
+        attrs['data-card-id'] = node.attrs['data-card-id']
       }
-      const emptyChildren = <br />;
+      if (node.attrs && node.attrs['data-template-id']) {
+        attrs['data-template-id'] = node.attrs['data-template-id']
+      }
+      const emptyChildren = <br />
       return (
         <p {...attrs} key={node.currIndex}>
           {children || emptyChildren}
         </p>
-      );
-    },
+      )
+    }
   },
   blockquote: {
     content: 'block+',
     group: 'block',
     attrs: {
       'data-card-id': { default: null },
+      'data-template-id': { default: null }
     },
     parseDOM: [
       {
         tag: 'blockquote',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
-      },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
+      }
     ],
-    toDOM(node) {
-      return ['blockquote', { 'data-card-id': node.attrs['data-card-id'] }, 0];
+    toDOM (node) {
+      return [
+        'blockquote',
+        {
+          'data-card-id': node.attrs['data-card-id'],
+          'data-template-id': node.attrs['data-template-id']
+        },
+        0
+      ]
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
-      const attrs = {};
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
+      const attrs = {}
       if (node.attrs && node.attrs['data-card-id']) {
-        attrs['data-card-id'] = node.attrs['data-card-id'];
+        attrs['data-card-id'] = node.attrs['data-card-id']
+      }
+      if (node.attrs && node.attrs['data-template-id']) {
+        attrs['data-template-id'] = node.attrs['data-template-id']
       }
       return (
         <blockquote key={node.currIndex} {...attrs}>
           {children}
         </blockquote>
-      );
-    },
+      )
+    }
   },
   styled_blockquote: {
     content: 'block+',
@@ -85,59 +106,69 @@ export const basicNodes = {
     attrs: {
       class: { default: 'styled' },
       'data-card-id': { default: null },
+      'data-template-id': { default: null }
     },
     parseDOM: [
       {
         tag: 'blockquote.styled',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             class: 'styled',
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
-      },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
+      }
     ],
-    toDOM(node) {
+    toDOM (node) {
       return [
         'blockquote',
-        { class: 'styled', 'data-card-id': node.attrs['data-card-id'] },
-        0,
-      ];
+        {
+          class: 'styled',
+          'data-card-id': node.attrs['data-card-id'],
+          'data-template-id': node.attrs['data-template-id']
+        },
+        0
+      ]
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
-      const attrs = {};
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
+      const attrs = {}
       if (node.attrs && node.attrs['data-card-id']) {
-        attrs['data-card-id'] = node.attrs['data-card-id'];
+        attrs['data-card-id'] = node.attrs['data-card-id']
+      }
+      if (node.attrs && node.attrs['data-template-id']) {
+        attrs['data-template-id'] = node.attrs['data-template-id']
       }
       return (
-        <blockquote className="styled" key={node.currIndex} {...attrs}>
+        <blockquote className='styled' key={node.currIndex} {...attrs}>
           {children}
         </blockquote>
-      );
-    },
+      )
+    }
   },
   horizontal_rule: {
     group: 'block',
     parseDOM: [{ tag: 'hr' }],
-    toDOM() {
-      return ['hr'];
+    toDOM () {
+      return ['hr']
     },
     onInsert: view => {
       view.dispatch(
         view.state.tr.replaceSelectionWith(
           view.state.schema.nodes.horizontal_rule.create()
         )
-      );
+      )
     },
-    toStatic(node) {
-      return <hr key={node.currIndex} />;
-    },
+    toStatic (node) {
+      return <hr key={node.currIndex} />
+    }
   },
   heading: {
     attrs: {
       level: { default: 2 },
       id: { default: '' },
       'data-card-id': { default: null },
+      'data-template-id': { default: null }
     },
     content: 'inline*',
     group: 'block',
@@ -151,73 +182,83 @@ export const basicNodes = {
       // },
       {
         tag: 'h2',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             level: 2,
             id: dom.getAttribute('id'),
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
       },
       {
         tag: 'h3',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             level: 3,
             id: dom.getAttribute('id'),
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
       },
       {
         tag: 'h4',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             level: 4,
             id: dom.getAttribute('id'),
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
       },
       {
         tag: 'h5',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             level: 5,
             id: dom.getAttribute('id'),
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
       },
       {
         tag: 'h6',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             level: 6,
             id: dom.getAttribute('id'),
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
-      },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
+      }
     ],
-    toDOM(node) {
+    toDOM (node) {
       return [
         `h${node.attrs.level < 2 ? 2 : node.attrs.level}`,
-        { id: node.attrs.id, 'data-card-id': node.attrs['data-card-id'] },
-        0,
-      ];
+        {
+          id: node.attrs.id,
+          'data-card-id': node.attrs['data-card-id'],
+          'data-template-id': node.attrs['data-template-id']
+        },
+        0
+      ]
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
       if (node.attrs.level === 1) {
         return (
           <h2
             key={node.currIndex}
             id={node.attrs.id}
             data-card-id={node.attrs['data-card-id']}
+            data-template-id={node.attrs['data-template-id']}
           >
             {children}
           </h2>
-        );
+        )
       }
       if (node.attrs.level === 2) {
         return (
@@ -225,10 +266,11 @@ export const basicNodes = {
             key={node.currIndex}
             id={node.attrs.id}
             data-card-id={node.attrs['data-card-id']}
+            data-template-id={node.attrs['data-template-id']}
           >
             {children}
           </h2>
-        );
+        )
       }
       if (node.attrs.level === 3) {
         return (
@@ -236,10 +278,11 @@ export const basicNodes = {
             key={node.currIndex}
             id={node.attrs.id}
             data-card-id={node.attrs['data-card-id']}
+            data-template-id={node.attrs['data-template-id']}
           >
             {children}
           </h3>
-        );
+        )
       }
       if (node.attrs.level === 4) {
         return (
@@ -247,10 +290,11 @@ export const basicNodes = {
             key={node.currIndex}
             id={node.attrs.id}
             data-card-id={node.attrs['data-card-id']}
+            data-template-id={node.attrs['data-template-id']}
           >
             {children}
           </h4>
-        );
+        )
       }
       if (node.attrs.level === 5) {
         return (
@@ -258,10 +302,11 @@ export const basicNodes = {
             key={node.currIndex}
             id={node.attrs.id}
             data-card-id={node.attrs['data-card-id']}
+            data-template-id={node.attrs['data-template-id']}
           >
             {children}
           </h5>
-        );
+        )
       }
       if (node.attrs.level === 6) {
         return (
@@ -269,150 +314,184 @@ export const basicNodes = {
             key={node.currIndex}
             id={node.attrs.id}
             data-card-id={node.attrs['data-card-id']}
+            data-template-id={node.attrs['data-template-id']}
           >
             {children}
           </h6>
-        );
+        )
       }
-      return null;
-    },
+      return null
+    }
   },
   ordered_list: {
     content: 'list_item+',
     group: 'block',
-    attrs: { order: { default: 1 }, 'data-card-id': { default: null } },
+    attrs: {
+      order: { default: 1 },
+      'data-card-id': { default: null },
+      'data-template-id': { default: null }
+    },
     parseDOM: [
       {
         tag: 'ol',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             'data-card-id': dom.getAttribute('data-card-id'),
-            order: dom.hasAttribute('start') ? +dom.getAttribute('start') : 1,
-          };
-        },
-      },
+            'data-template-id': dom.getAttribute('data-template-id'),
+            order: dom.hasAttribute('start') ? +dom.getAttribute('start') : 1
+          }
+        }
+      }
     ],
-    toDOM(node) {
+    toDOM (node) {
       return [
         'ol',
         {
           start: node.attrs.order === 1 ? null : node.attrs.order,
           'data-card-id': node.attrs['data-card-id'],
+          'data-template-id': node.attrs['data-template-id']
         },
-        0,
-      ];
+        0
+      ]
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
       const attrs = {
         start: node.attrs.order === 1 ? null : node.attrs.order,
         'data-card-id': node.attrs['data-card-id'],
-      };
+        'data-template-id': node.attrs['data-template-id']
+      }
       return (
         <ol key={node.currIndex} {...attrs}>
           {children}
         </ol>
-      );
-    },
+      )
+    }
   },
   bullet_list: {
     content: 'list_item+',
     group: 'block',
-    attrs: { 'data-card-id': { default: null } },
+    attrs: {
+      'data-card-id': { default: null },
+      'data-template-id': { default: null }
+    },
     parseDOM: [
       {
         tag: 'ul',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
-        },
-      },
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
+        }
+      }
     ],
-    toDOM(node) {
-      return ['ul', { 'data-card-id': node.attrs['data-card-id'] }, 0];
+    toDOM (node) {
+      return [
+        'ul',
+        {
+          'data-card-id': node.attrs['data-card-id'],
+          'data-template-id': node.attrs['data-template-id']
+        },
+        0
+      ]
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
       return (
-        <ul key={node.currIndex} data-card-id={node.attrs['data-card-id']}>
+        <ul
+          key={node.currIndex}
+          data-card-id={node.attrs['data-card-id']}
+          data-template-id={node.attrs['data-template-id']}
+        >
           {children}
         </ul>
-      );
-    },
+      )
+    }
   },
   list_item: {
     content: 'paragraph block*',
     defining: true,
     parseDOM: [{ tag: 'li' }],
-    toDOM() {
-      return ['li', 0];
+    toDOM () {
+      return ['li', 0]
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
-      return <li key={node.currIndex}>{children}</li>;
-    },
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
+      return <li key={node.currIndex}>{children}</li>
+    }
   },
   code_block: {
     content: 'text*',
     group: 'block',
-    attrs: { 'data-card-id': { default: null } },
+    attrs: {
+      'data-card-id': { default: null },
+      'data-template-id': { default: null }
+    },
     code: true,
     parseDOM: [
       {
         tag: 'pre',
-        getAttrs(dom) {
+        getAttrs (dom) {
           return {
             'data-card-id': dom.getAttribute('data-card-id'),
-          };
+            'data-template-id': dom.getAttribute('data-template-id')
+          }
         },
-        preserveWhitespace: true,
-      },
+        preserveWhitespace: true
+      }
     ],
-    toDOM(node) {
+    toDOM (node) {
       return [
         'pre',
-        { 'data-card-id': node.attrs['data-card-id'] },
-        ['code', 0],
-      ];
+        {
+          'data-card-id': node.attrs['data-card-id'],
+          'data-template-id': node.attrs['data-template-id']
+        },
+        ['code', 0]
+      ]
     },
     onInsert: view => {
       view.dispatch(
         view.state.tr.replaceSelectionWith(
           view.state.schema.nodes.code_block.create()
         )
-      );
+      )
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
       return (
-        <pre key={node.currIndex} data-card-id={node.attrs['data-card-id']}>
+        <pre
+          key={node.currIndex}
+          data-card-id={node.attrs['data-card-id']}
+          data-template-id={node.attrs['data-template-id']}
+        >
           <code>{children}</code>
         </pre>
-      );
-    },
+      )
+    }
   },
   text: {
     inline: true,
     group: 'inline',
-    toDOM(node) {
-      return node.text;
+    toDOM (node) {
+      return node.text
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
       return editorProps.renderStaticMarkup ? (
         children
       ) : (
         <span key={node.currIndex}>{children}</span>
-      );
-    },
+      )
+    }
   },
   hard_break: {
     inline: true,
     group: 'inline',
     selectable: false,
     parseDOM: [{ tag: 'br' }],
-    toDOM() {
-      return ['br'];
+    toDOM () {
+      return ['br']
     },
-    toStatic(node) {
-      return <br key={node.currIndex} />;
-    },
+    toStatic (node) {
+      return <br key={node.currIndex} />
+    }
   },
   none: {
     // empty schema block
@@ -420,14 +499,14 @@ export const basicNodes = {
     /* At the moment, it's not included in the defaultNodes prop */
     /* by default. */
     group: 'block',
-    toDOM() {
-      return ['span'];
+    toDOM () {
+      return ['span']
     },
-    toStatic(node, options, isSelected, isEditable, editorProps, children) {
-      return <span key={node.currIndex}>{children}</span>;
-    },
-  },
-};
+    toStatic (node, options, isSelected, isEditable, editorProps, children) {
+      return <span key={node.currIndex}>{children}</span>
+    }
+  }
+}
 
 export const basicMarks = {
   em: {
@@ -436,15 +515,15 @@ export const basicMarks = {
       { tag: 'em' },
       {
         style: 'font-style',
-        getAttrs: value => value === 'italic' && null,
-      },
+        getAttrs: value => value === 'italic' && null
+      }
     ],
-    toDOM() {
-      return ['em'];
+    toDOM () {
+      return ['em']
     },
-    toStatic(mark, children) {
-      return <em>{children}</em>;
-    },
+    toStatic (mark, children) {
+      return <em>{children}</em>
+    }
   },
 
   strong: {
@@ -455,26 +534,26 @@ export const basicMarks = {
       // tags with a font-weight normal.
       {
         tag: 'b',
-        getAttrs: node => node.style.fontWeight !== 'normal' && null,
+        getAttrs: node => node.style.fontWeight !== 'normal' && null
       },
       {
         style: 'font-weight',
-        getAttrs: value => /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null,
-      },
+        getAttrs: value => /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null
+      }
     ],
-    toDOM() {
-      return ['strong'];
+    toDOM () {
+      return ['strong']
     },
-    toStatic(mark, children) {
-      return <strong>{children}</strong>;
-    },
+    toStatic (mark, children) {
+      return <strong>{children}</strong>
+    }
   },
   link: {
     inclusive: false,
     attrs: {
       href: { default: '' },
       title: { default: null },
-      target: { default: null },
+      target: { default: null }
     },
     parseDOM: [
       {
@@ -483,22 +562,22 @@ export const basicMarks = {
           return {
             href: dom.getAttribute('href'),
             title: dom.getAttribute('title'),
-            target: dom.getAttribute('target'),
-          };
-        },
-      },
+            target: dom.getAttribute('target')
+          }
+        }
+      }
     ],
-    toDOM(node) {
+    toDOM (node) {
       /* Links seem to be recieving a target attr that is a dom element */
       /* coming from the wrong source in some interfaces. This ensures */
       /* only strings can be a target attr. */
-      const attrs = node.attrs;
+      const attrs = node.attrs
       if (attrs.target && typeof attrs.target !== 'string') {
-        attrs.target = null;
+        attrs.target = null
       }
-      return ['a', attrs];
+      return ['a', attrs]
     },
-    toStatic(mark, children) {
+    toStatic (mark, children) {
       return (
         <a
           href={mark.attrs.href}
@@ -507,44 +586,44 @@ export const basicMarks = {
         >
           {children}
         </a>
-      );
+      )
     },
-    toEditable: () => {} /* This is a workaround to make the LinkMenu function within tables */,
+    toEditable: () => {} /* This is a workaround to make the LinkMenu function within tables */
   },
   sub: {
     parseDOM: [{ tag: 'sub' }],
-    toDOM() {
-      return ['sub'];
+    toDOM () {
+      return ['sub']
     },
-    toStatic(mark, children) {
-      return <sub>{children}</sub>;
-    },
+    toStatic (mark, children) {
+      return <sub>{children}</sub>
+    }
   },
   sup: {
     parseDOM: [{ tag: 'sup' }],
-    toDOM() {
-      return ['sup'];
+    toDOM () {
+      return ['sup']
     },
-    toStatic(mark, children) {
-      return <sup>{children}</sup>;
-    },
+    toStatic (mark, children) {
+      return <sup>{children}</sup>
+    }
   },
   strike: {
     parseDOM: [{ tag: 's' }, { tag: 'strike' }, { tag: 'del' }],
-    toDOM() {
-      return ['s'];
+    toDOM () {
+      return ['s']
     },
-    toStatic(mark, children) {
-      return <s>{children}</s>;
-    },
+    toStatic (mark, children) {
+      return <s>{children}</s>
+    }
   },
   code: {
     parseDOM: [{ tag: 'code' }],
-    toDOM() {
-      return ['code'];
+    toDOM () {
+      return ['code']
     },
-    toStatic(mark, children) {
-      return <code>{children}</code>;
-    },
-  },
-};
+    toStatic (mark, children) {
+      return <code>{children}</code>
+    }
+  }
+}

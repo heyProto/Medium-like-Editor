@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { library } from '@fortawesome/fontawesome-svg-core'
 
 import {
   faBold,
@@ -15,9 +15,9 @@ import {
   faLink,
   faListOl,
   faListUl,
-  faSquare,
-} from '@fortawesome/free-solid-svg-icons';
-import './MenuItem.css';
+  faSquare
+} from '@fortawesome/free-solid-svg-icons'
+import './MenuItem.css'
 
 library.add(
   faBold,
@@ -33,21 +33,21 @@ library.add(
   faListOl,
   faListUl,
   faSquare
-);
+)
 
 const propTypes = {
   editorState: PropTypes.object,
   dispatchTransaction: PropTypes.func,
   command: PropTypes.func,
   isActive: PropTypes.bool,
-  isAllowed: PropTypes.bool,
-};
+  isAllowed: PropTypes.bool
+}
 
 class MenuItem extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
-    this.handleMouseDown = this.handleMouseDown.bind(this);
+    this.handleMouseDown = this.handleMouseDown.bind(this)
   }
 
   // componentDidMount() {
@@ -59,18 +59,17 @@ class MenuItem extends Component {
   //   });
   // }
 
-  handleMouseDown(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    this.props.run();
+  handleMouseDown (e) {
+    e.stopPropagation()
+    e.preventDefault()
+    this.props.run()
   }
 
-  render() {
-    // console.log(this.props)
+  render () {
     return (
-      <div className="proto-menuitem-div">
+      <div className='proto-menuitem-div'>
         <button
-          className="proto-menuitem"
+          className='proto-menuitem'
           disabled={!this.props.isAllowed}
           active={this.props.isActive ? 'true' : 'false'}
           onMouseDown={this.handleMouseDown}
@@ -80,10 +79,10 @@ class MenuItem extends Component {
           {this.props.children}
         </button>
       </div>
-    );
+    )
   }
 }
 
-MenuItem.propTypes = propTypes;
+MenuItem.propTypes = propTypes
 // MenuItem.defaultProps = defaultProps;
-export default MenuItem;
+export default MenuItem
