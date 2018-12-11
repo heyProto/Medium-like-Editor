@@ -2,7 +2,7 @@ import { Selection } from 'prosemirror-state'
 import { DOMParser, Schema, Slice } from 'prosemirror-model'
 import { defaultNodes, defaultMarks } from '../schemas'
 
-export const docIsEmpty = doc => {
+export function docIsEmpty(doc) {
   return (
     doc.childCount === 0 ||
     (doc.childCount === 1 &&
@@ -11,12 +11,12 @@ export const docIsEmpty = doc => {
   )
 }
 
-export const dispatchEmptyTransaction = editorView => {
+export function dispatchEmptyTransaction(editorView) {
   const emptyInitTransaction = editorView.state.tr
   editorView.dispatch(emptyInitTransaction)
 }
 
-export const buildSchema = (customNodes = {}, customMarks = {}) => {
+export function buildSchema(customNodes = {}, customMarks = {}) {
   const schemaNodes = {
     ...defaultNodes,
     ...customNodes
@@ -83,11 +83,11 @@ export const renderStatic = (
   })
 }
 
-export const getJSON = editorView => {
+export function getJSON(editorView) {
   return editorView.state.doc.toJSON()
 }
 
-export const getText = (editorView, separator = '\n') => {
+export function getText(editorView, separator = '\n') {
   return editorView.state.doc.textBetween(
     0,
     editorView.state.doc.nodeSize - 2,
@@ -95,7 +95,7 @@ export const getText = (editorView, separator = '\n') => {
   )
 }
 
-export const getCollabJSONs = (editorView, collabIds) => {
+export function getCollabJSONs(editorView, collabIds) {
   const collabPlugin = editorView.state.plugins.reduce((prev, curr) => {
     if (curr.key === 'collaborative$') {
       return curr
@@ -106,7 +106,7 @@ export const getCollabJSONs = (editorView, collabIds) => {
   return collabPlugin ? collabPlugin.getJSONs(collabIds) : null
 }
 
-export const importHtml = (editorView, htmlString) => {
+export function importHtml(editorView, htmlString) {
   /* Create wrapper DOM node */
   const wrapperElem = document.createElement('div')
 
@@ -127,7 +127,7 @@ export const importHtml = (editorView, htmlString) => {
   editorView.dispatch(tr)
 }
 
-export const parseHtml = (htmlString, doc) => {
+export function parseHtml(htmlString, doc) {
   const wrapperElem = (doc || document).createElement('div')
 
   wrapperElem.innerHTML = htmlString
@@ -137,10 +137,10 @@ export const parseHtml = (htmlString, doc) => {
   return newDoc
 }
 
-export const toHTML = (node) => {
+export function toHtmlString(node) {
   return new XMLSerializer().serializeToString(node.toDOM())
 }
 
-export const focus = editorView => {
+export function focus(editorView) {
   editorView.focus()
 }
