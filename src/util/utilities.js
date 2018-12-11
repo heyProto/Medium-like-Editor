@@ -137,6 +137,10 @@ export const parseHtml = (htmlString, doc) => {
   return newDoc
 }
 
+export const toHTML = (node) => {
+  return new XMLSerializer().serializeToString(node.toDOM())
+}
+
 export const focus = editorView => {
   editorView.focus()
 }
