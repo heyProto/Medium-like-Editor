@@ -62,21 +62,21 @@ class DropdownMenuItem extends Component {
   }
 
   render() {
-    const list = this.props.items;
+    const list = this.props.options;
     const { isOpened, selected } = this.state;
     let contentDisplay = isOpened ? 'inherit' : 'none';
 
     return (
       <div
-        className="editor-dropdown"
+        className="dd-menuitem-container"
         ref={node => {
           this.node = node;
         }}
       >
-        <div className="proto-menuitem" onClick={() => this.handleClick()}>
-          <div className="dd-header-title">{selected}</div>
+        <div className="proto-menuitem" disabled onClick={() => this.handleClick()}>
+          <div className="dd-menuitem-header-title" active={list.some(x=> x.isActive)? 'true' : 'false'}>{selected}</div>
         </div>
-        <div className="dd-content" style={{ display: contentDisplay }}>
+        <div className="dd-menuitem-content" style={{ display: contentDisplay }}>
           {list.map(e => {
             return (
               <MenuItem key={e.title} {...e} isAllowed={true}>

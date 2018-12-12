@@ -1,16 +1,26 @@
-.editor-dropdown {
+.dd-menuitem-container {
 	display: inline-block;
 	position: relative;
 	vertical-align: top;
 }
 
-.dd-content {
+.dd-menuitem-content {
 	position: absolute;
 	display:none;
 	background-color: white;
 }
 
-.dd-list-item {
+.dd-menuitem-header-title {
+	line-height: 30px;
+	font-weight: 800;
+}
+
+
+.dd-menuitem-header-title[active=true] {
+	background-color: #c8c8c8;
+}
+
+.dd-menuitem-list-item {
 	background-color: white;
 }
 

@@ -5,6 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faBold,
   faItalic,
+  faUnderline,
   faQuoteLeft,
   faQuoteRight,
   faMinus,
@@ -22,6 +23,7 @@ import './MenuItem.css'
 library.add(
   faBold,
   faItalic,
+  faUnderline,
   faQuoteLeft,
   faQuoteRight,
   faMinus,
@@ -75,6 +77,7 @@ class MenuItem extends Component {
           onMouseDown={this.handleMouseDown}
           title={this.title}
           alt={this.title}
+          key={this.title}
         >
           {this.props.children}
         </button>

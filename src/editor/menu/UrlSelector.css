@@ -11,4 +11,5 @@
     box-shadow: 2px 2px 4px 0px #a9a9a9;
     font-family: 'Montserrat', sans-serif;
     background-color: white;
+    z-index: 10;
 }

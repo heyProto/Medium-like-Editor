@@ -105,8 +105,8 @@ class UrlSelector extends Component {
                 />
               </label>
               
-              <button onMouseDown={this.handleSubmit}>Submit</button>
-              <button onMouseDown={this.toggleSelector}>Cancel</button>
+              <div className="proto-button" onMouseDown={this.handleSubmit}>Submit</div>
+              <div className="proto-button-close" onMouseDown={this.handleClick}>Cancel</div>
             </div>
         )}
       </div>

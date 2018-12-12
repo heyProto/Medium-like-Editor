@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Quattrocento');
+
 .ProseMirror-menubar {
     min-height: 30px;
     height: 30px;
@@ -10,6 +12,31 @@
 .ProseMirror-icon svg {
     height: 1em;
     width: 1em;
+}
+
+p {
+    color: #707175;
+    line-height: 28px;
+    font-size: 16px;
+    font-family: 'Quattrocento', serif;
+}
+
+h2 {
+    color: #333;
+    font-size: 26px;
+    font-family: 'Lato', sans-serif;
+    line-height: 36px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+h3 {
+    color: #333;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+    line-height: 36px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 ol li {
@@ -60,13 +87,20 @@ ul li > ul li > ul li > ul li > ul li > ul li {
 	list-style-type: square;
 }
 
-.proto-button, .proto-button-close{
-    padding: .25rem .5rem;
-    font-size: .875rem;
+.proto-button, .proto-button-close {
+    padding: .75rem 2rem;
+    font-size: 1rem;
+    text-transform: uppercase;
     line-height: 1.5;
     border-radius: .2rem;
     display: inline-block;
-    margin: 4px;
+    margin: 4px 4px 4px 0px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.proto-button, .proto-button-close:hover {
+    cursor: pointer;
 }
 
 .proto-button {

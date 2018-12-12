@@ -104,13 +104,13 @@ class Editor extends Component {
             onChange={this.handleViewChange}
             schema={this.schema}
           />
-          <button
+          <div
             className='proto-button'
             // disabled={!this.props.isAllowed}
             onMouseDown={this.handleSubmit}
           >
             Submit
-          </button>
+          </div>
         </div>
       )
     } else {

@@ -526,6 +526,22 @@ export const basicMarks = {
     }
   },
 
+  u: {
+    parseDOM: [
+      { tag: 'u' },
+      {
+        style: 'font-style',
+        getAttrs: value => value === 'underline' && null
+      }
+    ],
+    toDOM () {
+      return ['u']
+    },
+    toStatic (mark, children) {
+      return <u>{children}</u>
+    }
+  },
+
   strong: {
     parseDOM: [
       { tag: 'strong' },

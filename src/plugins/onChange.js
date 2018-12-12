@@ -237,6 +237,14 @@ const getMenuItems = editorView => {
       isActive: schema.marks.em && markIsActive(schema.marks.em),
     },
     {
+      title: 'Underline',
+      section: 'transform',
+      type: 'button',
+      faIcon: 'underline',
+      run: applyToggleMark.bind(this, schema.marks.u, {}),
+      isActive: schema.marks.u && markIsActive(schema.marks.u),
+    },
+    {
       title: 'Code',
       section: 'transform',
       type: 'button',
@@ -275,10 +283,10 @@ const getMenuItems = editorView => {
       section: 'transform',
       type: 'dropdown',
       placeHolder: 'H',
-      items: headers,
+      options: headers,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
-      isAllowed:
-        schema.nodes.heading && blockTypeIsActive(schema.nodes.heading),
+      isActive:
+        schema.nodes.heading && blockTypeIsActive(schema.nodes.heading)
     },
     {
       title: 'Link',
