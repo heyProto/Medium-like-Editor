@@ -1,6 +1,8 @@
 .proto-menu {
 	background-color: #ededed;
 	padding: 5px 0px;
+	position: sticky;
+	top: 0px;
 }
 
 .proto-menu, .proto-menu > .proto-menuitem-div:first-child {
