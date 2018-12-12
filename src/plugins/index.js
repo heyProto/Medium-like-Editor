@@ -24,15 +24,15 @@ export const requiredPlugins = {
 	gapCursor: buildGapCursor,
 	history: buildHistory,
 	keymap: buildKeymap,
-	table: buildTable,
-	// collaborative: buildCollaborative,
-	citation: buildCitation,
-	footnote: buildFootnote,
+	// table: buildTable,
+	// // collaborative: buildCollaborative,
+	// citation: buildCitation,
+	// footnote: buildFootnote,
 };
 
 export const optionalPlugins = {
 	inputRules: buildInputRules,
-	headerIds: buildHeaderIds,
+	// headerIds: buildHeaderIds,
 	placeholder: buildPlaceholder,
-	highlights: buildHighlights,
+	// highlights: buildHighlights,
 };

@@ -1,99 +1,110 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import View from './View'
-import Menu from './menu/Menu'
-import { EditorState } from 'prosemirror-state'
-import { buildSchema, parseHtml } from '../util/utilities'
-import styles from './Editor.css'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import View from "./View";
+import Menu from "./menu/Menu";
+import { EditorState } from "prosemirror-state";
+import { buildSchema, parseHtml } from "../util/utilities";
+import styles from "./Editor.css";
+import { Schema, DOMParser, DOMSerializer } from "prosemirror-model";
 
 class Editor extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
-    this.createEditor = this.createEditor.bind(this)
-    this.prepareCards = this.prepareCards.bind(this)
-    this.handleViewChange = this.handleViewChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.createEditor = this.createEditor.bind(this);
+    this.prepareCards = this.prepareCards.bind(this);
+    this.handleViewChange = this.handleViewChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
-    this.viewRef = React.createRef()
-    this.schema = buildSchema(this.props.customNodes, this.props.customMarks)
+    this.viewRef = React.createRef();
+    this.schema = buildSchema(this.props.customNodes, this.props.customMarks);
     this.initialContent = {
-      type: 'doc',
+      type: "doc",
       attrs: { meta: {} },
-      content: [{ type: 'paragraph' }]
-    }
+      content: [{ type: "paragraph" }],
+    };
 
-    let initDate = Date.now()
+    let initDate = Date.now();
     this.state = {
       lastChange: initDate,
       lastSubmit: initDate,
-      cards: []
-    }
+      cards: [],
+    };
   }
 
-  componentDidMount () {
-    this.createEditor()
+  componentDidMount() {
+    this.createEditor();
   }
 
-  createEditor () {
+  createEditor() {
     if (this.props.cards) {
-      this.initialContent.content = this.props.cards
+      this.initialContent.content = this.props.cards;
     }
     /* Create the Editor State */
     const state = EditorState.create({
       doc: this.schema.nodeFromJSON(this.initialContent),
-      schema: this.schema
-    })
-    this.setState({ editorState: state })
+      schema: this.schema,
+    });
+    this.setState({ editorState: state });
   }
 
-  prepareCards () {
+  prepareCards() {
     if (this.state.lastChange > this.state.lastSubmit) {
-      let cards = []
+      let cards = [];
+
       this.state.editorState.doc.content.forEach(element => {
         if (
           cards.length === 0 ||
           (cards[cards.length - 1].data.length === 1 &&
-            cards[cards.length - 1].data[0].type.name === 'card') ||
-          element.type.name === 'card' ||
-          (element.type.name === 'heading' && element.attrs.level === 2)
+            cards[cards.length - 1].data[0].type.name === "card") ||
+          element.type.name === "card" ||
+          (element.type.name === "heading" && element.attrs.level === 2)
         ) {
           cards.push({
-            'data-card-id': element.attrs['data-card-id'],
-            'data-template-id': element.attrs['data-template-id'],
-            data: [element]
-          })
+            "data-card-id": element.attrs["data-card-id"],
+            "data-template-id": element.attrs["data-template-id"],
+            data: [element],
+          });
         } else {
-          cards[cards.length - 1].data.push(element)
+          cards[cards.length - 1].data.push(element);
         }
-      })
-      return cards
+      });
+      return cards;
     }
   }
 
-  handleViewChange (e) {
-    const editorState = e.view.state
+  handleViewChange(e) {
+    const editorState = e.view.state;
     this.setState({
       editorChange: e,
       editorState: editorState,
-      lastChange: Date.now()
-    })
-    this.props.onChange && this.props.onChange(editorState)
+      lastChange: Date.now(),
+    });
+    this.props.onChange && this.props.onChange(editorState);
   }
 
-  handleSubmit (e) {
-    let cards = this.prepareCards()
-    cards &&
+  handleSubmit(e) {
+    let cards = this.prepareCards();
+    if (cards) {
+      cards.forEach(card => {
+        let fragment = DOMSerializer.fromSchema(this.schema).serializeFragment(
+          card.data
+        );
+        let tmp = document.createElement("div");
+        tmp.appendChild(fragment);
+        card.htmlString = tmp.innerHTML;
+      });
       this.setState(
         { cards: cards, lastSubmit: Date.now() },
         this.props.onSubmit && this.props.onSubmit(cards)
-      )
+      );
+    }
   }
 
-  render () {
+  render() {
     if (this.state.editorState) {
       return (
-        <div className='proto-editor'>
+        <div className="proto-editor">
           <Menu
             editorChange={this.state.editorChange}
             schema={this.schema}
@@ -112,9 +123,9 @@ class Editor extends Component {
             Submit
           </div>
         </div>
-      )
+      );
     } else {
-      return <div />
+      return <div />;
     }
   }
 }
@@ -132,4 +143,4 @@ class Editor extends Component {
 // </pre>
 // <pre>{JSON.stringify(parseHtml(this.htmlString), null, 2)}</pre>
 
-export default Editor
+export default Editor;
