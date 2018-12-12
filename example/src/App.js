@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Editor, toHtmlString } from "proto-editor";
+import { Editor } from "proto-editor";
 
 import "./App.css";
 

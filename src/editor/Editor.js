@@ -13,6 +13,7 @@ class Editor extends Component {
 
     this.createEditor = this.createEditor.bind(this);
     this.prepareCards = this.prepareCards.bind(this);
+    this.escapeHTML = this.escapeHTML.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -73,6 +74,12 @@ class Editor extends Component {
     }
   }
 
+  escapeHTML(htmlString) {
+    let div = document.createElement("div");
+    div.innerText = htmlString;
+    return div.innerHTML;
+  }
+
   handleViewChange(e) {
     const editorState = e.view.state;
     this.setState({
@@ -92,7 +99,7 @@ class Editor extends Component {
         );
         let tmp = document.createElement("div");
         tmp.appendChild(fragment);
-        card.htmlString = tmp.innerHTML;
+        card.htmlString = this.escapeHTML(tmp.innerHTML);
       });
       this.setState(
         { cards: cards, lastSubmit: Date.now() },
@@ -116,7 +123,7 @@ class Editor extends Component {
             schema={this.schema}
           />
           <div
-            className='proto-button'
+            className="proto-button"
             // disabled={!this.props.isAllowed}
             onMouseDown={this.handleSubmit}
           >

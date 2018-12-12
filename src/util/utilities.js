@@ -137,10 +137,6 @@ export function parseHtml(htmlString, doc) {
   return newDoc
 }
 
-export function toHtmlString(node) {
-  return new XMLSerializer().serializeToString(node.toDOM())
-}
-
 export function focus(editorView) {
   editorView.focus()
 }
