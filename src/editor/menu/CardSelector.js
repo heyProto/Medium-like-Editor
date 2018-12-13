@@ -25,49 +25,7 @@ class CardSelector extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.toggleSelector = this.toggleSelector.bind(this)
 
-    this.state = { isOpened: false, cardList: null }
-  }
-
-  componentDidMount () {
-    let cards_request = this.props.cards_request
-    console.log(cards_request)
-    let cardList = []
-    if (cards_request) {
-      axios
-        .get(cards_request.url, {
-          headers: { 'Access-Token': cards_request.token }
-        })
-        .then(function (response) {
-          cardList = response.data.map(x => {
-            return {
-              url: x.iframe_url,
-              title: x.name,
-              key: x.id,
-              'data-template-id': x.template_card_id
-            }
-          })
-        })
-    } else {
-      cardList = [
-        {
-          url:
-            'https://cdn.protograph.pykih.com/99e448b6fcb668c5a3d4/index.html?view_cast_id=7a312bd07ab133968703ec4e&base_url=https://www.responsiblebiz.org',
-          size: 75,
-          height: 419,
-          align: 'center',
-          caption: 'Image',
-          'data-card-id': 62499,
-          'data-template-id': 47
-        }
-      ]
-
-      cardList.map(e => {
-        e.key = e['data-card-id']
-        e.title = e.caption
-        return e
-      })
-    }
-    this.setState({ cardList })
+    this.state = { isOpened: false}
   }
 
   hideModal = () => {
@@ -90,7 +48,7 @@ class CardSelector extends Component {
   }
 
   handleChange (e) {
-    let card = this.state.cardList.find(x => x.key === e)
+    let card = this.cardList.find(x => x.key === e)
 
     this.setState({
       card: card
@@ -111,12 +69,49 @@ class CardSelector extends Component {
       isAllowed: this.props.isAllowed
     }
 
+    this.cardList = []
+    if (cards_request) {
+      axios
+        .get(cards_request.url, {
+          headers: { 'Access-Token': cards_request.token }
+        })
+        .then(function (response) {
+          this.cardList = response.data.map(x => {
+            return {
+              url: x.iframe_url,
+              title: x.name,
+              key: x.id,
+              'data-template-id': x.template_card_id
+            }
+          })
+        })
+    } else {
+      this.cardList = [
+        {
+          url:
+            'https://cdn.protograph.pykih.com/99e448b6fcb668c5a3d4/index.html?view_cast_id=7a312bd07ab133968703ec4e&base_url=https://www.responsiblebiz.org',
+          size: 75,
+          height: 419,
+          align: 'center',
+          caption: 'Image',
+          'data-card-id': 62499,
+          'data-template-id': 47
+        }
+      ]
+
+      this.cardList.map(e => {
+        e.key = e['data-card-id']
+        e.title = e.caption
+        return e
+      })
+    }
+
     return (
       <div className='card-selector-button'>
         <Modal isOpened={this.state.isOpened} handleClose={this.hideModal}>
         <h3 className="modal-heading">Insert Card</h3>
           <DropDown
-            options={this.state.cardList}
+            options={this.cardList}
             onChange={this.handleChange}
             placeHolder="Select Card"
             width="100px"
