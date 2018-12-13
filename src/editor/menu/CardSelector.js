@@ -77,13 +77,13 @@ class CardSelector extends Component {
           headers: { "Access-Token": cards_request.token },
         })
         .then(function(response) {
-          cardList = response.data.map(x => {
-            return {
+          response.data.forEach(x => {
+            cardList.push({
               url: x.iframe_url,
               title: x.name,
               key: x.id,
               "data-template-id": x.template_card_id,
-            };
+            });
           });
         });
     }
@@ -94,7 +94,7 @@ class CardSelector extends Component {
           <h3 className="modal-heading">Insert Card</h3>
           <DropDown
             options={cardList}
-            onChange={(e) => this.handleChange(cardList)}
+            onChange={e => this.handleChange(cardList)}
             placeHolder="Select Card"
             width="100px"
           />
