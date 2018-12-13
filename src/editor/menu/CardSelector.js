@@ -47,7 +47,7 @@ class CardSelector extends Component {
     }
   }
 
-  handleChange(cardList) {
+  handleChange(e, cardList) {
     let card = cardList.find(x => x.key === e);
 
     this.setState({
@@ -94,7 +94,7 @@ class CardSelector extends Component {
           <h3 className="modal-heading">Insert Card</h3>
           <DropDown
             options={cardList}
-            onChange={e => this.handleChange(cardList)}
+            onChange={e => this.handleChange(e, cardList)}
             placeHolder="Select Card"
             width="100px"
           />
