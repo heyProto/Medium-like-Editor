@@ -83,6 +83,8 @@ class CardSelector extends Component {
               title: x.name,
               key: x.id,
               "data-template-id": x.template_card_id,
+              "data-card-id": x.id,
+              caption: x.name
             });
           });
         });
