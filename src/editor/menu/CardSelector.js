@@ -30,6 +30,7 @@ class CardSelector extends Component {
 
   componentDidMount () {
     let cards_request = this.props.cards_request
+    console.log(cards_request)
     let cardList = []
     if (cards_request) {
       axios
