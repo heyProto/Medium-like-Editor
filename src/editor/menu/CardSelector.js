@@ -47,8 +47,8 @@ class CardSelector extends Component {
     }
   }
 
-  handleChange(e) {
-    let card = this.cardList.find(x => x.key === e);
+  handleChange(cardList) {
+    let card = cardList.find(x => x.key === e);
 
     this.setState({
       card: card,
@@ -70,14 +70,14 @@ class CardSelector extends Component {
     };
 
     let cards_request = this.props.cards_request;
-    this.cardList = [];
+    let cardList = [];
     if (cards_request) {
       axios
         .get(cards_request.url, {
           headers: { "Access-Token": cards_request.token },
         })
         .then(function(response) {
-          this.cardList = response.data.map(x => {
+          cardList = response.data.map(x => {
             return {
               url: x.iframe_url,
               title: x.name,
@@ -93,8 +93,8 @@ class CardSelector extends Component {
         <Modal isOpened={this.state.isOpened} handleClose={this.hideModal}>
           <h3 className="modal-heading">Insert Card</h3>
           <DropDown
-            options={this.cardList}
-            onChange={this.handleChange}
+            options={cardList}
+            onChange={(e) => this.handleChange(cardList)}
             placeHolder="Select Card"
             width="100px"
           />
