@@ -23,10 +23,10 @@
   margin: 5px 0px;
 }
 
-.display-block {
+.show {
   display: block;
 }
 
-.display-none {
+.hide {
   display: none;
 }

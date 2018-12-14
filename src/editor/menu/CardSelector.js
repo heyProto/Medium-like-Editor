@@ -7,7 +7,6 @@ import axios from "axios";
 import "./CardSelector.css";
 import Modal from "../util/modal/Modal";
 import { ReactComponent as ProtoIcon } from "../../assets/icons/proto-icon.svg";
-// window.axios = axios
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -26,11 +25,11 @@ class CardSelector extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.toggleSelector = this.toggleSelector.bind(this);
 
-    this.state = { isOpened: false };
+    this.state = { isOpen: false };
   }
 
   hideModal = () => {
-    this.setState({ isOpened: false });
+    this.setState({ isOpen: false });
   };
 
   handleSubmit(e) {
@@ -57,8 +56,8 @@ class CardSelector extends Component {
   }
 
   toggleSelector(e) {
-    let isOpened = this.state.isOpened;
-    this.setState({ isOpened: !isOpened, card: null });
+    let isOpen = this.state.isOpen;
+    this.setState({ isOpen: !isOpen, card: null });
   }
 
   render() {
@@ -93,7 +92,7 @@ class CardSelector extends Component {
 
     return (
       <div className="card-selector-button">
-        <Modal isOpened={this.state.isOpened} handleClose={this.hideModal}>
+        <Modal isOpen={this.state.isOpen} onClose={this.hideModal}>
           <h3 className="modal-heading">Insert Card</h3>
           <DropDown
             options={cardList}
