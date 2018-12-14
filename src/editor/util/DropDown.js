@@ -22,24 +22,24 @@ class DropDown extends Component {
       selected: null
     };
 
-    this.handleClick = this.handleClick.bind(this)
-    this.handleClickOutside = this.handleClickOutside.bind(this)
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   handleClick() {
     if (!this.state.isOpened) {
-      document.addEventListener('click', this.handleClickOutside, false);
+      document.addEventListener("click", this.handleClickOutside, false);
     } else {
-      document.removeEventListener('click', this.handleClickOutside, false);
+      document.removeEventListener("click", this.handleClickOutside, false);
     }
 
     this.setState(prevState => ({
-      isOpened: !prevState.isOpened,
+      isOpened: !prevState.isOpened
     }));
   }
 
   handleClickOutside() {
-    document.removeEventListener('click', this.handleClickOutside, false);
+    document.removeEventListener("click", this.handleClickOutside, false);
     this.setState({
       isOpened: false
     });
@@ -68,7 +68,7 @@ class DropDown extends Component {
     const { isOpened, selected } = this.state;
     const selectedTitle = selected && list.find(x => x.key === selected).title;
     let width = this.props.width ? this.props.width : "100%";
-    let contentDisplay = isOpened ? 'block' : 'none'
+    let contentDisplay = isOpened ? "block" : "none";
     if (type === "menu") {
       return (
         <div
@@ -82,14 +82,25 @@ class DropDown extends Component {
               className="dd-menuitem-header-title"
               active={list.some(x => x.isActive) ? "true" : "false"}
             >
-              {this.props.faIcon ? <FontAwesomeIcon icon={this.props.faIcon} size="lg" /> : this.props.placeHolder}
+              {this.props.faIcon ? (
+                <FontAwesomeIcon icon={this.props.faIcon} size="lg" />
+              ) : (
+                this.props.placeHolder
+              )}
             </div>
           </div>
-          <div className="dd-menuitem-content" style={{display: contentDisplay}}>
+          <div
+            className="dd-menuitem-content"
+            style={{ display: contentDisplay }}
+          >
             {list.map(e => {
               return (
                 <MenuItem key={e.title} {...e} isAllowed={true}>
-                  {e.faIcon ? <FontAwesomeIcon icon={e.faIcon} size="lg" /> : e.title}
+                  {e.faIcon ? (
+                    <FontAwesomeIcon icon={e.faIcon} size="lg" />
+                  ) : (
+                    e.title
+                  )}
                 </MenuItem>
               );
             })}
@@ -98,38 +109,44 @@ class DropDown extends Component {
       );
     } else {
       return (
-        <div className="editor-dropdown">
-          <div
-            className="dd-header"
-            onClick={() => this.toggleList()}
-            style={{ width: width }}
-          >
-            <div className="dd-header-title">
-              {selectedTitle || this.props.placeHolder}
+        <div className="editor-dropdown clearfix">
+          <div className="dd-label">{this.props.label}</div>
+          <div className="dd-content">
+            <div
+              className="dd-header"
+              onClick={() => this.toggleList()}
+              style={{ width: width }}
+            >
+              <div className="dd-header-title">
+                {selectedTitle || this.props.placeHolder}
+              </div>
+              {isOpened ? (
+                <FontAwesomeIcon
+                  icon="angle-up"
+                  style={{ padding: "0px 2px 0px 0px", float: "right" }}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon="angle-down"
+                  style={{ padding: "0px 2px 0px 0px", float: "right" }}
+                />
+              )}
             </div>
-            {isOpened ? (
-              <FontAwesomeIcon icon="angle-up" style={{ paddingLeft: "5px" }} />
-            ) : (
-              <FontAwesomeIcon
-                icon="angle-down"
-                style={{ paddingLeft: "5px" }}
-              />
+            {isOpened && (
+              <div className="dd-list" style={{ width: width }}>
+                {list.map(item => (
+                  <div
+                    className="dd-list-item"
+                    style={{ width: width }}
+                    key={item.key}
+                    onClick={e => this.handleSelect(item.key)}
+                  >
+                    {item.title}
+                  </div>
+                ))}
+              </div>
             )}
-          </div>
-          {isOpened && (
-            <div className="dd-list" style={{ width: width }}>
-              {list.map(item => (
-                <div
-                  className="dd-list-item"
-                  style={{ width: width }}
-                  key={item.key}
-                  onClick={e => this.handleSelect(item.key)}
-                >
-                  {item.title}
-                </div>
-              ))}
             </div>
-          )}
         </div>
       );
     }

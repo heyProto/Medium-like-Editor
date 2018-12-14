@@ -45,6 +45,7 @@ class Menu extends Component {
   };
 
   render() {
+    console.log(this.props.editorChange)
     return (
       <div className="proto-menu">
         {this.props.editorChange &&
