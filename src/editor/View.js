@@ -45,7 +45,7 @@ const defaultProps = {
   placeholder: '',
   isReadOnly: false,
   highlights: [],
-  getHighlightContent: () => {},
+  getHighlightContent: () => {}
 };
 
 class View extends Component {
@@ -56,6 +56,7 @@ class View extends Component {
     this.configureNodeViews = this.configureNodeViews.bind(this);
     this.createEditor = this.createEditor.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
 
     this.editorRef = React.createRef();
     this.plugins = undefined;
@@ -189,6 +190,8 @@ class View extends Component {
     this.props.onChange(e);
   }
 
+  
+
   render() {
     /* Before createEditor is called from componentDidMount, we */
     /* render a static version of the doc for server-side */
@@ -200,6 +203,8 @@ class View extends Component {
           this.props.isReadOnly ? 'read-only' : ''
         }`}
         ref={this.editorRef}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
       >
         {renderStatic(
           this.props.schema,

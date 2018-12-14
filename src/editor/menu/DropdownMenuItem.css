@@ -24,3 +24,7 @@
 	background-color: white;
 }
 
+.dd-menuitem-container:hover .dd-menuitem-content {
+	display: block !important;
+}
+

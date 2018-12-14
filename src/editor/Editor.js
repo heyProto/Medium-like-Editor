@@ -30,7 +30,8 @@ class Editor extends Component {
       lastChange: initDate,
       lastSubmit: initDate,
       cards: [],
-    };
+      focused: false
+    }
   }
 
   componentDidMount() {
@@ -101,14 +102,18 @@ class Editor extends Component {
         tmp.appendChild(fragment);
         card.htmlString = this.escapeHTML(tmp.innerHTML);
       });
-      this.setState(
-        { cards: cards, lastSubmit: Date.now() },
-        this.props.onSubmit && this.props.onSubmit(cards)
-      );
-    }
+
+  render () {
+  handleFocus = () => {
+    this.setState({focused: true})
   }
 
-  render() {
+  handleBlur = () => {
+    this.setState({focused: false})
+    console.log('blur', this.state.focused)
+  }
+
+  render () {
     if (this.state.editorState) {
       return (
         <div className="proto-editor">
@@ -116,11 +121,14 @@ class Editor extends Component {
             editorChange={this.state.editorChange}
             schema={this.schema}
             cards_request={this.props.cards_request}
+            show={this.state.focused}
           />
           <View
             editorState={this.state.editorState}
             onChange={this.handleViewChange}
             schema={this.schema}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
           />
           <div
             className="proto-button"

@@ -219,32 +219,8 @@ const getMenuItems = editorView => {
     },
   ];
 
-  const menuItems = [
-    {
-      title: 'Strong',
-      section: 'transform',
-      type: 'button',
-      faIcon: 'bold',
-      run: applyToggleMark.bind(this, schema.marks.strong, {}),
-      isActive: schema.marks.strong && markIsActive(schema.marks.strong),
-    },
-    {
-      title: 'Emphasis',
-      section: 'transform',
-      type: 'button',
-      faIcon: 'italic',
-      run: applyToggleMark.bind(this, schema.marks.em, {}),
-      isActive: schema.marks.em && markIsActive(schema.marks.em),
-    },
-    {
-      title: 'Underline',
-      section: 'transform',
-      type: 'button',
-      faIcon: 'underline',
-      run: applyToggleMark.bind(this, schema.marks.u, {}),
-      isActive: schema.marks.u && markIsActive(schema.marks.u),
-    },
-    {
+  const transforms = [
+  {
       title: 'Code',
       section: 'transform',
       type: 'button',
@@ -277,6 +253,33 @@ const getMenuItems = editorView => {
       faIcon: 'strikethrough',
       run: applyToggleMark.bind(this, schema.marks.strike, {}),
       isActive: schema.marks.strike && markIsActive(schema.marks.strike),
+    },];
+
+  const menuItems = [
+    {section: 'transform',
+    items: [{
+      title: 'Strong',
+      section: 'transform',
+      type: 'button',
+      faIcon: 'bold',
+      run: applyToggleMark.bind(this, schema.marks.strong, {}),
+      isActive: schema.marks.strong && markIsActive(schema.marks.strong),
+    },
+    {
+      title: 'Emphasis',
+      section: 'transform',
+      type: 'button',
+      faIcon: 'italic',
+      run: applyToggleMark.bind(this, schema.marks.em, {}),
+      isActive: schema.marks.em && markIsActive(schema.marks.em),
+    },
+    {
+      title: 'Underline',
+      section: 'transform',
+      type: 'button',
+      faIcon: 'underline',
+      run: applyToggleMark.bind(this, schema.marks.u, {}),
+      isActive: schema.marks.u && markIsActive(schema.marks.u),
     },
     {
       title: 'Heading',
@@ -287,8 +290,9 @@ const getMenuItems = editorView => {
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
       isActive:
         schema.nodes.heading && blockTypeIsActive(schema.nodes.heading)
-    },
-    {
+    }]},
+    {section: 'insert',
+    items: [{
       title: 'Link',
       section: 'transform',
       type: 'prompt',
@@ -297,6 +301,23 @@ const getMenuItems = editorView => {
       isActive: schema.marks.link && markIsActive(schema.marks.link),
     },
     {
+      title: 'Horizontal Rule',
+      section: 'insert',
+      type: 'button',
+      faIcon: 'minus',
+      run: schema.nodes.horizontal_rule.spec.onInsert.bind(this, editorView),
+      isAllowed: canInsert(editorView.state, schema.nodes.horizontal_rule),
+    },
+    {
+      title: 'Card',
+      section: 'insert',
+      type: 'prompt',
+      faIcon: 'square',
+      run: schema.nodes.card.spec.onInsert.bind(this, editorView),
+      isAllowed: canInsert(editorView.state, schema.nodes.card),
+    }]},
+    {section: 'block',
+    items: [{
       title: 'Unordered List',
       section: 'block',
       type: 'button',
@@ -324,23 +345,15 @@ const getMenuItems = editorView => {
       isActive:
         schema.nodes.styled_blockquote &&
         blockTypeIsActive(schema.nodes.styled_blockquote),
-    },
-    {
-      title: 'Horizontal Rule',
-      section: 'insert',
-      type: 'button',
-      faIcon: 'minus',
-      run: schema.nodes.horizontal_rule.spec.onInsert.bind(this, editorView),
-      isAllowed: canInsert(editorView.state, schema.nodes.horizontal_rule),
-    },
-    {
-      title: 'Card',
-      section: 'insert',
-      type: 'prompt',
-      faIcon: 'square',
-      run: schema.nodes.card.spec.onInsert.bind(this, editorView),
-      isAllowed: canInsert(editorView.state, schema.nodes.card),
-    },
+    }]},
+    {section: 'more',
+    items: [{
+      title: 'Transforms',
+      section: 'transform',
+      type: 'dropdown',
+      faIcon: 'ellipsis-h',
+      options: transforms
+    },]}
   ];
 
   const tableItems =

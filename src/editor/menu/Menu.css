@@ -3,8 +3,21 @@
 	padding: 5px 0px;
 	position: sticky;
 	top: 0px;
+	transition: height 2s linear;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
 .proto-menu, .proto-menu > .proto-menuitem-div:first-child {
 	border-radius: 3px;
+}
+
+.menu-section-div {
+	display: inline-block;
+	border-right: 1px solid #a8a8a8;
+	vertical-align: top;
+}
+
+.menu-section-div:last-of-type {
+	border: none;
 }
