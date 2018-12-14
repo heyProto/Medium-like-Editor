@@ -140,14 +140,4 @@ class Editor extends Component {
 // Editor.propTypes = propTypes;
 // Editor.defaultProps = defaultProps;
 
-//  <pre>
-//   {this.state.editorState &&
-//     <code>
-//       {JSON.stringify(this.state.editorState.doc, null, 2)}
-//     </code>
-//   // <code>{this.state.editorState.toJSON()}</code>
-//   }
-// </pre>
-// <pre>{JSON.stringify(parseHtml(this.htmlString), null, 2)}</pre>
-
 export default Editor;

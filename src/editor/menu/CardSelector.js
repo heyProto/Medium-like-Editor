@@ -5,6 +5,7 @@ import DropDown from "../util/DropDown";
 import Card from "../../components/Card/Card";
 import axios from "axios";
 import "./CardSelector.css";
+import Modal from "../util/modal/Modal";
 import { ReactComponent as ProtoIcon } from "../../assets/icons/proto-icon.svg";
 // window.axios = axios
 
@@ -84,7 +85,7 @@ class CardSelector extends Component {
               key: x.id,
               "data-template-id": x.template_card_id,
               "data-card-id": x.id,
-              caption: x.name
+              caption: x.name,
             });
           });
         });
@@ -122,32 +123,7 @@ class CardSelector extends Component {
   }
 }
 
-const Modal = ({ handleClose, isOpened, children }) => {
-  const showHideClassName = isOpened
-    ? "modal display-block"
-    : "modal display-none";
-
-  return (
-    <div className={showHideClassName}>
-      <section className="modal-main">
-        {children}
-        <div className="proto-button-close" onClick={handleClose}>
-          Close
-        </div>
-      </section>
-    </div>
-  );
-};
-
 CardSelector.propTypes = propTypes;
 // CardSelector.defaultProps = defaultProps;
-export default CardSelector;
 
-// {this.state && this.state.isOpened && (
-//           <div
-//             className="card-selector-content"
-//             style={{ display: contentDisplay }}
-//           >
-//
-//           </div>
-//         )}
+export default CardSelector;
