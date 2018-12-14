@@ -45,12 +45,9 @@ class Menu extends Component {
   };
 
   render() {
-    // let menuVisibility = this.props.show ? 'visible' : 'hidden'
-    // let menuOpacity = this.props.show ? '1' : '0'
-    let menuHeight = this.props.show ? '40px' : '0px'
     return (
-      <div className="proto-menu" style={{height: menuHeight}}>
-        {this.props.show &&
+      <div className="proto-menu">
+        {this.props.editorChange &&
           this.props.editorChange.menuItems.map(k => {
             return <div className="menu-section-div">
             {k.items.map(e => {

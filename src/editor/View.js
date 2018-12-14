@@ -203,8 +203,6 @@ class View extends Component {
           this.props.isReadOnly ? 'read-only' : ''
         }`}
         ref={this.editorRef}
-        onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}
       >
         {renderStatic(
           this.props.schema,
