@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 .editor-dropdown {
 	clear: both;
 }
@@ -28,9 +32,14 @@
 	display: inline-block;
 }
 
+.dd-content {
+	position: relative;
+}
+
 .dd-list {
 	background-color: white;
-    overflow: scroll;
+	overflow-y: auto;
+	overflow-x: hidden;
     position: absolute;
     border: 1px solid #959595;
     border-radius: 0px 0px 5px 5px;

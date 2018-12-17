@@ -19,7 +19,8 @@ class DropDown extends Component {
     super(props);
     this.state = {
       isOpened: false,
-      selected: null
+      selectedTitle: null,
+      selectedCard: null
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -46,21 +47,23 @@ class DropDown extends Component {
   }
 
   handleSelect(key) {
-    if (this.state.selected !== key) {
+    const list = this.props.options;
+    if (this.state.selectedCard !== key) {
       this.setState(prevState => ({
-        selected: key,
-        isOpened: !prevState.isOpened
+        selectedCard: key,
+        isOpened: !prevState.isOpened,
+        selectedTitle: list.find(x => x.key === key).title
       }));
       this.props.onChange(key);
-      this.setState({ selected: null });
+      this.setState({ selectedCard: null });
     }
+    console.log(this.state)
   }
 
   render() {
     const list = this.props.options;
     const type = this.props.ddtype;
-    const { isOpened, selected } = this.state;
-    const selectedTitle = selected && list.find(x => x.key === selected).title;
+    const { isOpened, selectedCard, selectedTitle } = this.state;
     let width = this.props.width ? this.props.width : "100%";
     let contentDisplay = isOpened ? "block" : "none";
     if (type === "menu") {

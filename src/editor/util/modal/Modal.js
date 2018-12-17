@@ -17,14 +17,18 @@ export default class Modal extends Component {
           this.props.isOpen ? styles.show : styles.hide
         }`}
       >
-        <section className={styles["modal-main"]}>
+
+        <section className={styles["main"]}>
+        <div className={styles["heading"]}>{this.props.title}</div>
+        <div className={styles["content"]}>
           {this.props.children}
           <div
-            className="btn btn--md btn--secondary"
+            className="btn btn--secondary btn--md"
             onClick={this.props.onClose}
           >
             Close
           </div>
+        </div>
         </section>
       </div>
     );

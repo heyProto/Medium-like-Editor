@@ -90,18 +90,7 @@ class CardSelector extends Component {
         });
     }
     else {
-      cardList = [
-        {
-          url:
-            'https://cdn.protograph.pykih.com/99e448b6fcb668c5a3d4/index.html?view_cast_id=7a312bd07ab133968703ec4e&base_url=https://www.responsiblebiz.org',
-          size: 75,
-          height: 419,
-          align: 'center',
-          caption: 'Image',
-          'data-card-id': 62499,
-          'data-template-id': 47
-        }
-      ]
+      cardList = []
 
       cardList.map(e => {
         e.key = e['data-card-id']
@@ -113,14 +102,13 @@ class CardSelector extends Component {
 
     return (
       <div className="card-selector-button">
-        <Modal isOpen={this.state.isOpen} onClose={this.hideModal}>
-          <h3 className="modal-heading">Insert Card</h3>
+        <Modal isOpen={this.state.isOpen} onClose={this.hideModal} title="Insert Card">
           <DropDown
             options={cardList}
             onChange={e => this.handleChange(e, cardList)}
             label="Select"
             placeHolder="None"
-            width="110px"
+            key={this.state.isOpen}
           />
           <div className="div-label">Preview</div>
           <div className="card-preview">
