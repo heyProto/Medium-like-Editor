@@ -56,12 +56,6 @@ class DropDown extends Component {
     }
   }
 
-  toggleList() {
-    this.setState(prevState => ({
-      isOpened: !prevState.isOpened
-    }));
-  }
-
   render() {
     const list = this.props.options;
     const type = this.props.ddtype;
@@ -114,7 +108,7 @@ class DropDown extends Component {
           <div className="dd-content">
             <div
               className="dd-header"
-              onClick={() => this.toggleList()}
+              onClick={() => this.handleClick()}
               style={{ width: width }}
             >
               <div className="dd-header-title">

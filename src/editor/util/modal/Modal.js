@@ -20,7 +20,7 @@ export default class Modal extends Component {
         <section className={styles["modal-main"]}>
           {this.props.children}
           <div
-            className={styles["proto-button-close"]}
+            className="btn btn--md btn--secondary"
             onClick={this.props.onClose}
           >
             Close

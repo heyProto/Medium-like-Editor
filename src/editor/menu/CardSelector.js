@@ -130,7 +130,7 @@ class CardSelector extends Component {
           </div>
 
           <div
-            className="proto-button"
+            className="btn btn--md btn--primary"
             disabled={!this.state.card}
             onClick={this.handleSubmit}
           >

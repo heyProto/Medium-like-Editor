@@ -123,7 +123,7 @@ class Editor extends Component {
             schema={this.schema}
           />
           <div
-            className="proto-button"
+            className="btn btn--lg btn--primary"
             // disabled={!this.props.isAllowed}
             onMouseDown={this.handleSubmit}
           >

@@ -87,30 +87,42 @@ ul li > ul li > ul li > ul li > ul li > ul li {
 	list-style-type: square;
 }
 
-.proto-button, .proto-button-close {
-    padding: .75rem 2rem;
-    font-size: 1rem;
+.btn {
     text-transform: uppercase;
     line-height: 1.5;
-    border-radius: .2rem;
+    border-radius: 4px;
     display: inline-block;
     margin: 4px 4px 4px 0px;
     font-weight: 800;
     letter-spacing: 1px;
 }
 
-.proto-button, .proto-button-close:hover {
+.btn:hover {
     cursor: pointer;
 }
 
-.proto-button {
-	color: #fff;
-    background-color: #286EFA;
-    border-color: #286EFA;
+.btn--lg {
+    padding: 16px 32px;
+    font-size: 16px;    
 }
 
-.proto-button-close {
-	color: #fff;
-    background-color: #787878;
-    border-color: #787878;
+.btn--md {
+    padding: 10px 20px;
+    font-size: 14px;
 }
+
+.btn--primary {
+    color: #fff;
+    background-color: #286EFA;
+}
+
+.btn--secondary {
+    color: #fff;
+    background-color: #787878;
+}
+
+.btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
