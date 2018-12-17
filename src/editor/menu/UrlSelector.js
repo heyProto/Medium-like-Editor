@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import DropDown from '../util/DropDown';
+import Modal from "../util/modal/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core'
 import './UrlSelector.css';
+import {
+  faLink,
+} from '@fortawesome/free-solid-svg-icons'
+
+library.add(
+  faLink
+)
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -19,7 +28,6 @@ class UrlSelector extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
 
     this.targets = [
       { key: 'top', title: 'Same Page', value: '_top' },
@@ -27,9 +35,19 @@ class UrlSelector extends Component {
     ];
 
     this.state = { isOpened: false,
-                    targetValue: '_blank' };
+                    targetValue: '_blank',
+                    isOpen: false };
+    this.toggleSelector = this.toggleSelector.bind(this);
 
-    this.handleClickOutside = this.handleClickOutside.bind(this)
+  }
+
+  hideModal = () => {
+    this.setState({ isOpen: false });
+  };
+
+  toggleSelector(e) {
+    let isOpen = this.state.isOpen;
+    this.setState({ isOpen: !isOpen, card: null });
   }
 
   handleClick() {
@@ -57,7 +75,7 @@ class UrlSelector extends Component {
     e.stopPropagation();
     e.preventDefault();
     this.validateUrl();
-    this.handleClick();
+    this.toggleSelector();
     this.props.run({
       href: this.state.urlValue,
       title: this.state.titleValue,
@@ -70,7 +88,7 @@ class UrlSelector extends Component {
   render() {
     let buttonProps = {
       selection: this.props.selection,
-      run: this.props.isActive ? this.props.run : this.handleClick,
+      run: this.props.isActive ? this.props.run : this.toggleSelector,
       isActive: this.props.isActive,
       isAllowed: this.props.isAllowed,
       faIcon: this.props.faIcon
@@ -78,14 +96,10 @@ class UrlSelector extends Component {
     let contentDisplay = (this.state.isOpened) ? 'inherit' : 'none'
 
     return (
-      <div className="url-selector-button" ref={node => { this.node = node; }}>
-        <MenuItem {...buttonProps}>
-          <FontAwesomeIcon icon={this.props.faIcon} size="lg" />
-        </MenuItem>
-        {this.state && this.state.isOpened && (
-            <div className="url-selector-content" style={{display: contentDisplay}}>
-              <label>
-                Url:
+        <div className="url-selector-button">
+        <Modal isOpen={this.state.isOpen} onClose={this.hideModal} title="Insert Link">
+              <div className="input">
+                <div className="label">Url</div>
                 <input
                   type="text"
                   value={this.state.urlValue}
@@ -93,9 +107,9 @@ class UrlSelector extends Component {
                     this.setState({ urlValue: e.target.value });
                   }}
                 />
-              </label>
-              <label>
-                Title:
+              </div>
+              <div className="input">
+                <div className="label">Title</div>
                 <input
                   type="text"
                   value={this.state.titleValue}
@@ -103,12 +117,13 @@ class UrlSelector extends Component {
                     this.setState({ titleValue: e.target.value });
                   }}
                 />
-              </label>
+              </div>
               
-              <div className="proto-button" onMouseDown={this.handleSubmit}>Submit</div>
-              <div className="proto-button-close" onMouseDown={this.handleClick}>Cancel</div>
-            </div>
-        )}
+              <div className="btn btn--primary btn--md" onMouseDown={this.handleSubmit}>Submit</div>
+            </Modal>
+            <MenuItem {...buttonProps}>
+              <FontAwesomeIcon icon={buttonProps.faIcon} size="lg" />
+            </MenuItem>
       </div>
     );
   }

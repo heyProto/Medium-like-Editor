@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Quattrocento');
+@import url("https://fonts.googleapis.com/css?family=Quattrocento+Montserrat");
 
 .ProseMirror-menubar {
     min-height: 30px;
     height: 30px;
 }
 
-.ProseMirror-icon, .ProseMirror-menu-dropdown-wrap {
+.ProseMirror-icon,
+.ProseMirror-menu-dropdown-wrap {
     display: inline-block;
 }
 
@@ -18,13 +19,13 @@ p {
     color: #707175;
     line-height: 28px;
     font-size: 16px;
-    font-family: 'Quattrocento', serif;
+    font-family: "Quattrocento", serif;
 }
 
 h2 {
     color: #333;
     font-size: 26px;
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     line-height: 36px;
     margin-top: 10px;
     font-weight: bold;
@@ -33,58 +34,58 @@ h2 {
 h3 {
     color: #333;
     font-size: 20px;
-    font-family: 'Lato', sans-serif;
+    font-family: "Lato", sans-serif;
     line-height: 36px;
     margin-top: 10px;
     font-weight: bold;
 }
 
 ol li {
-	list-style-type: decimal;
+    list-style-type: decimal;
 }
 
 ol li > ol li {
-	list-style-type: lower-latin;
+    list-style-type: lower-latin;
 }
 
 ol li > ol li > ol li {
-	list-style-type: lower-roman;
+    list-style-type: lower-roman;
 }
 
 ol li > ol li > ol li > ol li {
-	list-style-type: decimal;
+    list-style-type: decimal;
 }
 
 ol li > ol li > ol li > ol li > ol li {
-	list-style-type: lower-latin;
+    list-style-type: lower-latin;
 }
 
 ol li > ol li > ol li > ol li > ol li > ol li {
-	list-style-type: lower-roman;
+    list-style-type: lower-roman;
 }
 
 ul li {
-	list-style-type: disc;
+    list-style-type: disc;
 }
 
 ul li > ul li {
-	list-style-type: circle;
+    list-style-type: circle;
 }
 
 ul li > ul li > ul li {
-	list-style-type: square;
+    list-style-type: square;
 }
 
 ul li > ul li > ul li > ul li {
-	list-style-type: disc;
+    list-style-type: disc;
 }
 
 ul li > ul li > ul li > ul li > ul li {
-	list-style-type: circle;
+    list-style-type: circle;
 }
 
 ul li > ul li > ul li > ul li > ul li > ul li {
-	list-style-type: square;
+    list-style-type: square;
 }
 
 .btn {
@@ -103,7 +104,7 @@ ul li > ul li > ul li > ul li > ul li > ul li {
 
 .btn--lg {
     padding: 16px 32px;
-    font-size: 16px;    
+    font-size: 16px;
 }
 
 .btn--md {
@@ -111,9 +112,14 @@ ul li > ul li > ul li > ul li > ul li > ul li {
     font-size: 14px;
 }
 
+.btn--sm {
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
 .btn--primary {
     color: #fff;
-    background-color: #286EFA;
+    background-color: #286efa;
 }
 
 .btn--secondary {
@@ -126,3 +132,10 @@ ul li > ul li > ul li > ul li > ul li > ul li {
     cursor: not-allowed;
 }
 
+.label {
+    font-size: 12px;
+    color: #4d4d4d;
+    font-family: Montserrat;
+    margin-left: 3px;
+    margin-top: 6px;
+}

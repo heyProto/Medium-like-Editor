@@ -4,7 +4,7 @@ import MenuItem from "../menu/MenuItem.js";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import "./DropDown.css";
+import styles from "./DropDown.module.css";
 
 library.add(faAngleUp, faAngleDown);
 
@@ -106,15 +106,15 @@ class DropDown extends Component {
       );
     } else {
       return (
-        <div className="editor-dropdown clearfix">
-          <div className="dd-label">{this.props.label}</div>
-          <div className="dd-content">
+        <div className={styles["editor-dropdown"]}>
+          <div className="label">{this.props.label}</div>
+          <div className={styles["content"]}>
             <div
-              className="dd-header"
+              className={styles["header"]}
               onClick={() => this.handleClick()}
               style={{ width: width }}
             >
-              <div className="dd-header-title">
+              <div className={styles["header__title"]}>
                 {selectedTitle || this.props.placeHolder}
               </div>
               {isOpened ? (
@@ -130,10 +130,10 @@ class DropDown extends Component {
               )}
             </div>
             {isOpened && (
-              <div className="dd-list" style={{ width: width }}>
+              <div className={styles["list"]} style={{ width: width }}>
                 {list.map(item => (
                   <div
-                    className="dd-list-item"
+                    className={styles["list__item"]}
                     style={{ width: width }}
                     key={item.key}
                     onClick={e => this.handleSelect(item.key)}

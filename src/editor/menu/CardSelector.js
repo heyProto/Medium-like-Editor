@@ -4,7 +4,7 @@ import MenuItem from "./MenuItem";
 import DropDown from "../util/DropDown";
 import Card from "../../components/Card/Card";
 import axios from "axios";
-import "./CardSelector.css";
+import styles from "./CardSelector.module.css";
 import Modal from "../util/modal/Modal";
 import { ReactComponent as ProtoIcon } from "../../assets/icons/proto-icon.svg";
 
@@ -101,7 +101,7 @@ class CardSelector extends Component {
 
 
     return (
-      <div className="card-selector-button">
+      <div className={styles["button"]}>
         <Modal isOpen={this.state.isOpen} onClose={this.hideModal} title="Insert Card">
           <DropDown
             options={cardList}
@@ -110,8 +110,8 @@ class CardSelector extends Component {
             placeHolder="None"
             key={this.state.isOpen}
           />
-          <div className="div-label">Preview</div>
-          <div className="card-preview">
+          <div className="label">Preview</div>
+          <div className={styles["preview"]}>
             {this.state.card && (
               <Card attrs={this.state.card} isSelected={false} />
             )}
