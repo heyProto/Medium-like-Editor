@@ -88,25 +88,27 @@ class CardSelector extends Component {
             });
           });
         });
-    }
-    else {
-      cardList = []
+    } else {
+      cardList = [];
 
       cardList.map(e => {
-        e.key = e['data-card-id']
-        e.title = e.caption
-        return e
-      })
+        e.key = e["data-card-id"];
+        e.title = e.caption;
+        return e;
+      });
     }
-
 
     return (
       <div className={styles["button"]}>
-        <Modal isOpen={this.state.isOpen} onClose={this.hideModal} title="Insert Card">
+        <Modal
+          isOpen={this.state.isOpen}
+          onClose={this.hideModal}
+          title="Insert Card"
+        >
+          <div className="label">Select</div>
           <DropDown
             options={cardList}
             onChange={e => this.handleChange(e, cardList)}
-            label="Select"
             placeHolder="None"
             key={this.state.isOpen}
           />

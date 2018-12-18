@@ -107,7 +107,6 @@ class DropDown extends Component {
     } else {
       return (
         <div className={styles["editor-dropdown"]}>
-          <div className="label">{this.props.label}</div>
           <div className={styles["content"]}>
             <div
               className={styles["header"]}
