@@ -99,7 +99,7 @@ class Editor extends Component {
         );
         let tmp = document.createElement("div");
         tmp.appendChild(fragment);
-        card.htmlString = this.escapeHTML(tmp.innerHTML);
+        card.htmlString = tmp.innerHTML;
       });
       this.setState(
         { cards: cards, lastSubmit: Date.now() },
