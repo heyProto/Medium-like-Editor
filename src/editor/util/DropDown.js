@@ -11,7 +11,7 @@ library.add(faAngleUp, faAngleDown);
 const propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func,
-  placeHolder: PropTypes.string
+  placeHolder: PropTypes.string,
 };
 
 class DropDown extends Component {
@@ -20,7 +20,7 @@ class DropDown extends Component {
     this.state = {
       isOpened: false,
       selectedTitle: null,
-      selectedCard: null
+      selectedCard: null,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -35,14 +35,14 @@ class DropDown extends Component {
     }
 
     this.setState(prevState => ({
-      isOpened: !prevState.isOpened
+      isOpened: !prevState.isOpened,
     }));
   }
 
   handleClickOutside() {
     document.removeEventListener("click", this.handleClickOutside, false);
     this.setState({
-      isOpened: false
+      isOpened: false,
     });
   }
 
@@ -52,12 +52,12 @@ class DropDown extends Component {
       this.setState(prevState => ({
         selectedCard: key,
         isOpened: !prevState.isOpened,
-        selectedTitle: list.find(x => x.key === key).title
+        selectedTitle: list.find(x => x.key === key).title,
       }));
       this.props.onChange(key);
       this.setState({ selectedCard: null });
     }
-    console.log(this.state)
+    console.log(this.state);
   }
 
   render() {
@@ -130,19 +130,26 @@ class DropDown extends Component {
             </div>
             {isOpened && (
               <div className={styles["list"]} style={{ width: width }}>
-                {list.map(item => (
-                  <div
-                    className={styles["list__item"]}
-                    style={{ width: width }}
-                    key={item.key}
-                    onClick={e => this.handleSelect(item.key)}
-                  >
-                    {item.title}
-                  </div>
-                ))}
+                {list.map(item => {
+                  return (
+                    <div
+                      className={styles["list__item"]}
+                      style={{ width: width }}
+                      key={item.key}
+                      onClick={e => this.handleSelect(item.key)}
+                    >
+                      <div className={styles["list__title"]}>{item.title}</div>
+                      {item.subtitle && (
+                        <div className={styles["list__subtitle"]}>
+                          {item.subtitle}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             )}
-            </div>
+          </div>
         </div>
       );
     }

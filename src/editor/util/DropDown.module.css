@@ -1,48 +1,60 @@
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .header {
-	padding: 6px 3px;
-    box-sizing: border-box;
-    position: relative;
-    border: 1px solid #959595;
-    border-bottom: 1px solid white;
-    border-radius: 5px 5px 0px 0px;
+  padding: 6px 3px;
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid #959595;
+  border-bottom: 1px solid white;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .header:only-child {
-	border: 1px solid #959595;
-	border-radius: 5px;
+  border: 1px solid #959595;
+  border-radius: 5px;
 }
 
 .header__title {
-	display: inline-block;
+  display: inline-block;
 }
 
 .content {
-	position: relative;
+  position: relative;
 }
 
 .list {
-	background-color: white;
-	overflow-y: auto;
-	overflow-x: hidden;
-    position: absolute;
-    border: 1px solid #959595;
-    border-radius: 0px 0px 5px 5px;
-    box-sizing: border-box;
-    border-top: none;
-    margin-top: -1px;
-    scrollbar-width: none;
-    max-height: 300px;
+  background-color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute;
+  border: 1px solid #959595;
+  border-radius: 0px 0px 5px 5px;
+  box-sizing: border-box;
+  border-top: none;
+  margin-top: -1px;
+  scrollbar-width: none;
+  max-height: 300px;
 }
 
 .list__item {
-	padding: 6px 3px;
+  padding: 6px 3px;
 }
 
 .list__item:hover {
-	background-color: #efefef;
-	cursor: pointer;
+  background-color: #efefef;
+  cursor: pointer;
+}
+
+.list__title {
+  width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list__subtitle {
+  width: 30%;
+  text-align: right;
 }

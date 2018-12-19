@@ -83,17 +83,36 @@ class CardSelector extends Component {
               title: x.name,
               key: x.id,
               "data-template-id": x.template_card_id,
+              subtitle: x.template_card_name,
               "data-card-id": x.id,
               caption: x.name,
             });
           });
         });
     } else {
-      cardList = [];
+      cardList = [
+        {
+          "data-card-id": 62499,
+          "date-template-id": 0,
+          url:
+            "https://cdn.protograph.pykih.com/99e448b6fcb668c5a3d4/index.html?view_cast_id=7a312bd07ab133968703ec4e&base_url=https://www.responsiblebiz.org",
+          caption: "Test1",
+          template_card_name: "Test",
+        },
+        {
+          "data-card-id": 62499,
+          "date-template-id": 0,
+          url:
+            "https://cdn.protograph.pykih.com/99e448b6fcb668c5a3d4/index.html?view_cast_id=7a312bd07ab133968703ec4e&base_url=https://www.responsiblebiz.org",
+          caption: "Test2",
+          template_card_name: "Test",
+        },
+      ];
 
       cardList.map(e => {
         e.key = e["data-card-id"];
         e.title = e.caption;
+        e.subtitle = e.template_card_name;
         return e;
       });
     }
