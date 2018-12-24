@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+
+//styles
 import styles from "./Modal.module.css";
+import theme from '../../Theme.module.css';
 
 export default class Modal extends Component {
   constructor(props) {
@@ -19,15 +22,15 @@ export default class Modal extends Component {
       >
 
         <section className={styles["main"]}>
-        <div className={styles["heading"]}>{this.props.title}</div>
-        <div className={styles["content"]}>
-          {this.props.children}
-          <div
-            className="btn btn--secondary btn--md"
+        <div className={styles["heading"]}>{this.props.title}
+         <div
+            className={styles["close-button"]}
             onClick={this.props.onClose}
           >
-            Close
-          </div>
+            ×
+          </div></div>
+        <div className={styles["content"]}>
+          {this.props.children}
         </div>
         </section>
       </div>

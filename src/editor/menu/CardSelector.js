@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
+
+//components
 import MenuItem from "./MenuItem";
 import DropDown from "../util/DropDown";
 import Card from "../../components/Card/Card";
-import axios from "axios";
-import styles from "./CardSelector.module.css";
 import Modal from "../util/modal/Modal";
 import { ReactComponent as ProtoIcon } from "../../assets/icons/proto-icon.svg";
+
+//styles
+import styles from "./CardSelector.module.css";
+import theme from '../Theme.module.css'
 
 const propTypes = {
   editorState: PropTypes.object,
@@ -124,14 +129,14 @@ class CardSelector extends Component {
           onClose={this.hideModal}
           title="Insert Card"
         >
-          <div className="label">Select</div>
+          <div className={theme.label}>Select</div>
           <DropDown
             options={cardList}
             onChange={e => this.handleChange(e, cardList)}
             placeHolder="None"
             key={this.state.isOpen}
           />
-          <div className="label">Preview</div>
+          <div className={theme.label}>Preview</div>
           <div className={styles["preview"]}>
             {this.state.card && (
               <Card attrs={this.state.card} isSelected={false} />
@@ -139,7 +144,7 @@ class CardSelector extends Component {
           </div>
 
           <div
-            className="btn btn--md btn--primary"
+            className={`${theme["btn"]} ${theme["btn--primary"]} ${theme["btn--md"]}`}
             disabled={!this.state.card}
             onClick={this.handleSubmit}
           >

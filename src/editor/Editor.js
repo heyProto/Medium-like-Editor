@@ -4,8 +4,9 @@ import View from "./View";
 import Menu from "./menu/Menu";
 import { EditorState } from "prosemirror-state";
 import { buildSchema, parseHtml } from "../util/utilities";
-import styles from "./Editor.css";
 import { Schema, DOMParser, DOMSerializer } from "prosemirror-model";
+import styles from "./Editor.css";
+import theme from './Theme.module.css'
 
 class Editor extends Component {
   constructor(props) {
@@ -123,7 +124,7 @@ class Editor extends Component {
             schema={this.schema}
           />
           <div
-            className="btn btn--lg btn--primary"
+            className={`${theme["btn"]} ${theme["btn--primary"]} ${theme["btn--lg"]}`}
             // disabled={!this.props.isAllowed}
             onMouseDown={this.handleSubmit}
           >

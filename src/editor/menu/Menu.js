@@ -5,7 +5,7 @@ import DropdownMenuItem from "./DropdownMenuItem";
 import DropDown from '../util/DropDown';
 import CardSelector from "./CardSelector.js";
 import UrlSelector from "./UrlSelector.js";
-import "./Menu.css";
+import styles from "./Menu.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const propTypes = {
@@ -47,10 +47,10 @@ class Menu extends Component {
   render() {
     console.log(this.props.editorChange)
     return (
-      <div className="proto-menu">
+      <div className={styles["menu"]}>
         {this.props.editorChange &&
           this.props.editorChange.menuItems.map(k => {
-            return <div className="menu-section-div">
+            return <div className={styles["section"]}>
             {k.items.map(e => {
               e.isAllowed = this.isAllowed(e);
               if (e.type === "button") {
@@ -83,7 +83,7 @@ class Menu extends Component {
                       />
                     );
                   case "Link":
-                    return <UrlSelector {...e} />;
+                    return <UrlSelector {...e} url={this.props.editorChange.activeLink ? this.props.editorChange.activeLink.attrs.href : undefined}/>;
                 }
               }
             })}

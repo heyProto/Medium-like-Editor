@@ -9,11 +9,13 @@
   border: 1px solid #959595;
   border-bottom: 1px solid white;
   border-radius: 5px 5px 0px 0px;
+  box-shadow: 3px 5px 5px 0px rgba(219, 217, 217, 0.75);
 }
 
 .header:only-child {
   border: 1px solid #959595;
   border-radius: 5px;
+  box-shadow:none;
 }
 
 .header__title {
@@ -36,6 +38,7 @@
   margin-top: -1px;
   scrollbar-width: none;
   max-height: 300px;
+  box-shadow: 3px 5px 5px 0px rgba(219, 217, 217, 0.75);
 }
 
 .list__item {

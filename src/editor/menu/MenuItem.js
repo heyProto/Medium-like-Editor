@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import styles from "./MenuItem.module.css";
 
 import {
   faBold,
@@ -69,9 +70,9 @@ class MenuItem extends Component {
 
   render () {
     return (
-      <div className='proto-menuitem-div'>
+      <div className={styles['item-div']}>
         <button
-          className='proto-menuitem'
+          className={styles['item']}
           disabled={!this.props.isAllowed}
           active={this.props.isActive ? 'true' : 'false'}
           onMouseDown={this.handleMouseDown}

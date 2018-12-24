@@ -5,6 +5,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import styles from "./DropDown.module.css";
+import menuItem from "../menu/MenuItem.module.css"
 
 library.add(faAngleUp, faAngleDown);
 
@@ -74,7 +75,7 @@ class DropDown extends Component {
             this.node = node;
           }}
         >
-          <div className="proto-menuitem" onClick={() => this.handleClick()}>
+          <div className={menuItem["item"]} onClick={() => this.handleClick()}>
             <div
               className="dd-menuitem-header-title"
               active={list.some(x => x.isActive) ? "true" : "false"}
