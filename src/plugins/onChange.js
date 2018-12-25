@@ -173,7 +173,8 @@ const getMenuItems = editorView => {
 
   const headers = [
     {
-      title: 'H2',
+      title: 'Level 2 Heading',
+      placeHolder: 'H2',
       level: 2,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 2 }),
       icon: 'header2.svg',
@@ -182,7 +183,8 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 2 }),
     },
     {
-      title: 'H3',
+      title: 'Level 3 Heading',
+      placeHolder: 'H3',
       level: 3,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 3 }),
       icon: 'header3.svg',
@@ -191,7 +193,8 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 3 }),
     },
     {
-      title: 'H4',
+      title: 'Level 4 Heading',
+      placeHolder: 'H4',
       level: 4,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 4 }),
       icon: 'header4.svg',
@@ -200,7 +203,8 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 4 }),
     },
     {
-      title: 'H5',
+      title: 'Level 5 Heading',
+      placeHolder: 'H5',
       level: 5,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 5 }),
       icon: 'header5.svg',
@@ -209,7 +213,8 @@ const getMenuItems = editorView => {
         blockTypeIsActive(schema.nodes.heading, { level: 5 }),
     },
     {
-      title: 'H6',
+      title: 'Level 6 Heading',
+      placeHolder: 'H6',
       level: 6,
       run: toggleBlockType.bind(this, schema.nodes.heading, { level: 6 }),
       icon: 'header6.svg',

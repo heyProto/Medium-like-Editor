@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import MenuItem from "./MenuItem.js";
-import DropdownMenuItem from "./DropdownMenuItem";
 import DropDown from '../util/DropDown';
+import Tooltip from '../util/Tooltip';
 import CardSelector from "./CardSelector.js";
 import UrlSelector from "./UrlSelector.js";
 import styles from "./Menu.module.css";
@@ -83,7 +83,8 @@ class Menu extends Component {
                       />
                     );
                   case "Link":
-                    return <UrlSelector {...e} url={this.props.editorChange.activeLink ? this.props.editorChange.activeLink.attrs.href : undefined}/>;
+                    return(
+                    <UrlSelector {...e} url={this.props.editorChange.activeLink ? this.props.editorChange.activeLink.attrs.href : undefined}/>);
                 }
               }
             })}

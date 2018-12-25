@@ -1,0 +1,30 @@
+.ProseMirror-menubar {
+    min-height: 30px;
+    height: 30px;
+}
+
+.ProseMirror-icon, .ProseMirror-menu-dropdown-wrap {
+    display: inline-block;
+}
+
+.ProseMirror-icon svg {
+    height: 1em;
+    width: 1em;
+}
+
+.protoEditorView {
+    white-space: pre-wrap;
+    overflow: visible;
+    outline: none;
+    margin-bottom: 10px;
+    tab-index: -1;
+}
+
+.protoEditorView > div {
+    padding-top:10px;
+}
+
+.styled {
+	border-left: 3px solid #808080;
+	padding-left: 10px;
+}

@@ -9,7 +9,7 @@ import NodeViewReact from '../util/nodeViewReact';
 import { renderStatic, buildSchema } from '../util/utilities';
 import { buildMenuItems } from '../util/menu.js';
 import Menu from './menu/Menu';
-import './View.css';
+import styles from './View.module.css';
 
 // require('./style.scss');
 
@@ -200,7 +200,7 @@ class View extends Component {
     return (
       <div
         className={`protoEditorView ${
-          this.props.isReadOnly ? 'read-only' : ''
+          this.props.isReadOnly ? styles['read-only'] : ''
         }`}
         ref={this.editorRef}
       >

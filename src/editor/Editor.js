@@ -5,7 +5,7 @@ import Menu from "./menu/Menu";
 import { EditorState } from "prosemirror-state";
 import { buildSchema, parseHtml } from "../util/utilities";
 import { Schema, DOMParser, DOMSerializer } from "prosemirror-model";
-import styles from "./Editor.css";
+import styles from "./Editor.module.css";
 import theme from './Theme.module.css'
 
 class Editor extends Component {
@@ -112,7 +112,7 @@ class Editor extends Component {
   render() {
     if (this.state.editorState) {
       return (
-        <div className="proto-editor">
+        <div className={styles["proto-editor"]}>
           <Menu
             editorChange={this.state.editorChange}
             schema={this.schema}

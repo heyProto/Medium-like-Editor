@@ -67,6 +67,7 @@ class CardSelector extends Component {
 
   render() {
     let buttonProps = {
+      title: this.props.title,
       faIcon: this.props.faIcon,
       selection: this.props.selection,
       run: this.toggleSelector,

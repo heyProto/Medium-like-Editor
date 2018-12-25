@@ -92,6 +92,7 @@ class UrlSelector extends Component {
 
   render() {
     let buttonProps = {
+      title: this.props.title,
       selection: this.props.selection,
       run: this.toggleSelector,
       isActive: this.props.isActive,

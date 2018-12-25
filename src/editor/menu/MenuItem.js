@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { library } from '@fortawesome/fontawesome-svg-core'
+import Tooltip from '../util/Tooltip';
 import styles from "./MenuItem.module.css";
 
 import {
@@ -19,7 +20,6 @@ import {
   faListUl,
   faSquare
 } from '@fortawesome/free-solid-svg-icons'
-import './MenuItem.css'
 
 library.add(
   faBold,
@@ -71,17 +71,17 @@ class MenuItem extends Component {
   render () {
     return (
       <div className={styles['item-div']}>
+      <Tooltip message={this.props.title}>
         <button
           className={styles['item']}
           disabled={!this.props.isAllowed}
           active={this.props.isActive ? 'true' : 'false'}
           onMouseDown={this.handleMouseDown}
-          title={this.title}
-          alt={this.title}
-          key={this.title}
+          key={this.props.title}
         >
           {this.props.children}
         </button>
+      </Tooltip>
       </div>
     )
   }

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import styles from "./DropDown.module.css";
 import menuItem from "../menu/MenuItem.module.css"
+import Tooltip from "./Tooltip"
 
 library.add(faAngleUp, faAngleDown);
 
@@ -70,14 +71,15 @@ class DropDown extends Component {
     if (type === "menu") {
       return (
         <div
-          className="dd-menuitem-container"
+          className={styles["menuitem-container"]}
           ref={node => {
             this.node = node;
           }}
         >
+        <Tooltip message={this.props.title}>
           <div className={menuItem["item"]} onClick={() => this.handleClick()}>
             <div
-              className="dd-menuitem-header-title"
+              className={styles["menuitem-header__title"]}
               active={list.some(x => x.isActive) ? "true" : "false"}
             >
               {this.props.faIcon ? (
@@ -87,8 +89,9 @@ class DropDown extends Component {
               )}
             </div>
           </div>
+          </Tooltip>
           <div
-            className="dd-menuitem-content"
+            className={styles["menuitem-content"]}
             style={{ display: contentDisplay }}
           >
             {list.map(e => {
@@ -97,7 +100,7 @@ class DropDown extends Component {
                   {e.faIcon ? (
                     <FontAwesomeIcon icon={e.faIcon} size="lg" />
                   ) : (
-                    e.title
+                    e.placeHolder
                   )}
                 </MenuItem>
               );

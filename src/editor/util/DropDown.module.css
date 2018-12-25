@@ -61,3 +61,34 @@
   width: 30%;
   text-align: right;
 }
+
+.menuitem-container {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  width: 35px;
+}
+
+.menuitem-content {
+  position: absolute;
+  display:none;
+  background-color: white;
+  width: inherit;
+}
+
+.menuitem-header__title {
+  line-height: 30px;
+  font-weight: 800;
+}
+
+.menuitem-header__title[active=true] {
+  background-color: #c8c8c8;
+}
+
+.menuitem-list__item {
+  background-color: white;
+}
+
+.menuitem-container:hover .menuitem-content {
+  display: block !important;
+}
